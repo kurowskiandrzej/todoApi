@@ -1,11 +1,16 @@
 import os
-from flask import Flask
+from flask import g, Flask, request
 
 from presentation.view.login_view import login_view
 
 app = Flask(__name__)
 
 app.register_blueprint(login_view)
+
+
+@app.before_request
+def before_request():
+    g.locale = request.headers.get('Accept-Language')
 
 
 if __name__ == "__main__":

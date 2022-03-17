@@ -6,3 +6,7 @@ from dependency_injection.use_case_provider import use_cases
 view_models = {
     LoginViewModel: LoginViewModel(use_cases[LoginViewModelUseCases])
 }
+
+
+def inject(key):
+    return view_models[key]
