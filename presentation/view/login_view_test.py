@@ -22,6 +22,13 @@ def test_login_route_post_method_returns_status_code_200():
     app = get_app()
     client = app.test_client()
     url = '/api/login'
-    response = client.post(url)
+    response = client.post(
+        url,
+        content_type='multipart/form-data',
+        data={
+            'email': 'test@mail.com',
+            'password': 'MYV4L!DPassword'
+        }
+    )
 
     assert response.status_code == 200
