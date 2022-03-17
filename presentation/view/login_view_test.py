@@ -3,11 +3,14 @@ from flask import Flask
 from presentation.view.login_view import login_view
 
 
-app = Flask(__name__)
-app.register_blueprint(login_view)
+def get_app():
+    app = Flask(__name__)
+    app.register_blueprint(login_view)
+    return app
 
 
 def test_login_route_get_method_returns_status_code_405():
+    app = get_app()
     client = app.test_client()
     url = '/api/login'
     response = client.get(url)
@@ -16,6 +19,7 @@ def test_login_route_get_method_returns_status_code_405():
 
 
 def test_login_route_post_method_returns_status_code_200():
+    app = get_app()
     client = app.test_client()
     url = '/api/login'
     response = client.post(url)
