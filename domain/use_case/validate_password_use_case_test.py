@@ -19,7 +19,7 @@ def test_returns_false_when_password_doesnt_contain_small_letters():
     assert validate_password_use_case("MYV4!PASSWORD") is False
 
 
-def test_returns_false_when_password_doesnt_contain_capital_character():
+def test_returns_false_when_password_doesnt_contain_capital_letter():
     assert validate_password_use_case("myv4l!password") is False
 
 
