@@ -8,6 +8,7 @@ class LoginViewModel:
 
     @staticmethod
     def login(email, password):
+        response = self.__use_case
         response = make_response(f'response success email: {email} password: {password}')
         response.status_code = 200
 

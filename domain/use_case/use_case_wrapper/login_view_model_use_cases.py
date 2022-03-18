@@ -5,3 +5,6 @@ class LoginViewModelUseCases:
     def __init__(self, repository: ToDoRepository):
         self.repository = repository
 
+    def login(self):
+        pass
+

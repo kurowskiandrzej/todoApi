@@ -1,7 +1,8 @@
 import re
-from common.constants import PASSWORD_PATTERN
-from common.constants import PASSWORD_MINIMUM_LENGTH
+
 from common.constants import PASSWORD_MAXIMUM_LENGTH
+from common.constants import PASSWORD_MINIMUM_LENGTH
+from common.constants import PASSWORD_PATTERN
 
 
 def validate_password_use_case(password: str) -> bool:

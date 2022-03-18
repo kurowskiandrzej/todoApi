@@ -17,7 +17,7 @@ def test_login_route_get_method_returns_status_code_405():
     assert response.status_code == 405
 
 
-def test_login_route_post_method_returns_status_code_200():
+def test_login_route_post_method_with_correct_password_returns_status_code_200():
     app = get_app()
     client = app.test_client()
     response = client.post(
@@ -30,3 +30,18 @@ def test_login_route_post_method_returns_status_code_200():
     )
 
     assert response.status_code == 200
+
+
+def test_login_route_post_method_with_incorrect_password_returns_status_code_401():
+    app = get_app()
+    client = app.test_client()
+    response = client.post(
+        '/api/login',
+        content_type='multipart/form-data',
+        data={
+            'email': 'test@mail.com',
+            'password': 'xMYV4L!DPassword'
+        }
+    )
+
+    assert response.status_code == 401
