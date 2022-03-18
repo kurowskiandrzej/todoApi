@@ -3,7 +3,7 @@ import abc
 
 class ToDoRepository(abc.ABC):
     @abc.abstractmethod
-    def get_password_by_email(self, email: str):
+    def get_password_hash_by_user_email(self, email: str):
         pass
 
     @abc.abstractmethod
