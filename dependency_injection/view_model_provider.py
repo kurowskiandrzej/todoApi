@@ -1,7 +1,7 @@
-from presentation.view_model.LoginViewModel import LoginViewModel
-from presentation.view_model.RegisterViewModel import RegisterViewModel
-from domain.use_case.use_case_wrapper.LoginViewModelUseCases import LoginViewModelUseCases
-from domain.use_case.use_case_wrapper.RegisterViewModelUseCases import RegisterViewModelUseCases
+from presentation.view_model.login_view_model import LoginViewModel
+from presentation.view_model.register_view_model import RegisterViewModel
+from domain.use_case.use_case_wrapper.login_view_model_use_cases import LoginViewModelUseCases
+from domain.use_case.use_case_wrapper.register_view_model_use_cases import RegisterViewModelUseCases
 from dependency_injection.use_case_provider import use_cases
 
 

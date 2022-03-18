@@ -1,5 +1,5 @@
 from flask import make_response
-from domain.use_case.use_case_wrapper.LoginViewModelUseCases import LoginViewModelUseCases
+from domain.use_case.use_case_wrapper.login_view_model_use_cases import LoginViewModelUseCases
 
 
 class LoginViewModel:

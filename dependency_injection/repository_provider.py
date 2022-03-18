@@ -1,5 +1,5 @@
-from domain.repository.ToDoRepository import ToDoRepository
-from data.repository.ToDoRepositoryImpl import ToDoRepositoryImpl
+from domain.repository.to_do_repository import ToDoRepository
+from data.repository.to_do_repository_impl import ToDoRepositoryImpl
 
 repositories = {
     ToDoRepository: ToDoRepositoryImpl()

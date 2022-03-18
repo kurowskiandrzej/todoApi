@@ -1,5 +1,5 @@
 from werkzeug.security import generate_password_hash, check_password_hash
-from domain.repository.ToDoRepository import ToDoRepository
+from domain.repository.to_do_repository import ToDoRepository
 from flask import g, make_response, Response
 from localization.locales import get_string_resource
 

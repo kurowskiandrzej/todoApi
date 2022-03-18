@@ -1,4 +1,4 @@
-from domain.repository.ToDoRepository import ToDoRepository
+from domain.repository.to_do_repository import ToDoRepository
 
 
 class LoginViewModelUseCases:

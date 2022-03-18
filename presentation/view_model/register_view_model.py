@@ -1,5 +1,5 @@
 from flask import make_response
-from domain.use_case.use_case_wrapper.RegisterViewModelUseCases import RegisterViewModelUseCases
+from domain.use_case.use_case_wrapper.register_view_model_use_cases import RegisterViewModelUseCases
 
 
 class RegisterViewModel:

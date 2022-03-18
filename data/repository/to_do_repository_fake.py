@@ -1,5 +1,5 @@
-from domain.repository.ToDoRepository import ToDoRepository
-from data.db.ToDoDao import ToDoDao
+from domain.repository.to_do_repository import ToDoRepository
+from data.db.to_do_dao import ToDoDao
 
 
 class ToDoRepositoryFake(ToDoRepository):

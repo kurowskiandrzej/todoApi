@@ -1,6 +1,6 @@
 from flask import Blueprint, request
 from dependency_injection.di import inject
-from presentation.view_model.LoginViewModel import LoginViewModel
+from presentation.view_model.login_view_model import LoginViewModel
 
 login_view = Blueprint('login_view', __name__, url_prefix='/api')
 login_view_model = inject(LoginViewModel)
