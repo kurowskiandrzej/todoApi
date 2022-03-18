@@ -11,7 +11,7 @@ def test_returns_false_when_password_is_too_short():
 
 
 def test_returns_false_when_password_is_too_long():
-    password = "!A1d" + "x" * (PASSWORD_MAXIMUM_LENGTH)
+    password = "!A1d" + "x" * PASSWORD_MAXIMUM_LENGTH
     assert validate_password_use_case(password) is False
 
 
