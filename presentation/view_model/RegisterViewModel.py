@@ -2,7 +2,7 @@ from flask import make_response
 from domain.use_case.use_case_wrapper.RegisterViewModelUseCases import RegisterViewModelUseCases
 
 
-class LoginViewModel:
+class RegisterViewModel:
     def __init__(self, use_case: RegisterViewModelUseCases):
         self.__use_case = use_case
 
