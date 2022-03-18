@@ -27,5 +27,5 @@ def test_returns_false_when_password_doesnt_contain_number():
     assert validate_password_use_case("MYVl!Password") is False
 
 
-def test_returns_false_when_special_character():
+def test_returns_false_when_password_doesnt_contain_special_character():
     assert validate_password_use_case("MYV4lPassword") is False
