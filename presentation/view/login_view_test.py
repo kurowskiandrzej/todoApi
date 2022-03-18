@@ -12,8 +12,7 @@ def get_app():
 def test_login_route_get_method_returns_status_code_405():
     app = get_app()
     client = app.test_client()
-    url = '/api/login'
-    response = client.get(url)
+    response = client.get('/api/login')
 
     assert response.status_code == 405
 
@@ -21,9 +20,8 @@ def test_login_route_get_method_returns_status_code_405():
 def test_login_route_post_method_returns_status_code_200():
     app = get_app()
     client = app.test_client()
-    url = '/api/login'
     response = client.post(
-        url,
+        '/api/login',
         content_type='multipart/form-data',
         data={
             'email': 'test@mail.com',
