@@ -7,6 +7,7 @@ from dependency_injection.use_case_provider import use_cases
 
 view_models = {
     LoginViewModel: LoginViewModel(use_cases[LoginViewModelUseCases]),
+    'LoginViewModelFake': LoginViewModel(use_cases['LoginViewModelUseCasesFake']),
     RegisterViewModel: RegisterViewModel(use_cases[RegisterViewModelUseCases])
 }
 

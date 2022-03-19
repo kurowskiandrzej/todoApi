@@ -5,11 +5,16 @@ from domain.use_case.validate_email_use_case import ValidateEmailUseCase
 from domain.use_case.validate_password_use_case import ValidatePasswordUseCase
 from dependency_injection.repository_provider import repositories
 from domain.repository.to_do_repository import ToDoRepository
-
+from data.repository.to_do_repository_fake import ToDoRepositoryFake
 
 use_cases = {
     LoginViewModelUseCases: LoginViewModelUseCases(
         LoginUserUseCase(repositories[ToDoRepository]),
+        ValidateEmailUseCase(),
+        ValidatePasswordUseCase()
+    ),
+    'LoginViewModelUseCasesFake': LoginViewModelUseCases(
+        LoginUserUseCase(repositories[ToDoRepositoryFake]),
         ValidateEmailUseCase(),
         ValidatePasswordUseCase()
     ),
