@@ -7,7 +7,12 @@ from presentation.view_model.login_view_model import LoginViewModel
 login_view = Blueprint('login_view', __name__, url_prefix='/api')
 
 
-login_view_model = inject(LoginViewModel)
+def get_view_model(app):
+    if app.config['TESTING']:
+        view_model = inject('LoginViewModelFake')
+    else:
+        view_model = inject(LoginViewModel)
+    return view_model
 
 
 @login_view.route('/login', methods=['POST'])
@@ -15,6 +20,6 @@ def login():
     email = request.form['email']
     password = request.form['password']
 
-    response = login_view_model.login(email, password)
+    response = get_view_model(flask.current_app).login(email, password)
 
     return response
