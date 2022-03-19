@@ -1,5 +1,8 @@
-from domain.use_case.validate_password_use_case import validate_password_use_case
+from domain.use_case.validate_password_use_case import ValidatePasswordUseCase
 from common.constants import PASSWORD_MAXIMUM_LENGTH
+
+
+validate_password_use_case = ValidatePasswordUseCase()
 
 
 def test_returns_true_when_valid_password_is_provided():

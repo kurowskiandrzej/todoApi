@@ -1,4 +1,4 @@
-from flask import Response, make_response
+from flask import g, Response, make_response
 from domain.use_case.use_case_wrapper.login_view_model_use_cases import LoginViewModelUseCases
 from localization.locales import get_string_resource
 

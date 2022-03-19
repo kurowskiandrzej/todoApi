@@ -3,5 +3,5 @@ pl = {
     'unknown_error': 'Nieznany błąd',
     'incorrect_password': 'Nieprawidłowe hasło',
     'user_already_exists': 'Użytkownik już istnieje',
-    'incorrect_email_format': 'Incorrect e-mail format'
+    'incorrect_email_format': 'Nieprawidłowy format adresu e-mail'
 }
