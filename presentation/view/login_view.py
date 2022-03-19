@@ -17,9 +17,10 @@ def get_view_model(app):
 
 @login_view.route('/login', methods=['POST'])
 def login():
+    view_model = get_view_model(flask.current_app)
     email = request.form['email']
     password = request.form['password']
 
-    response = get_view_model(flask.current_app).login(email, password)
+    response = view_model.login(email, password)
 
     return response
