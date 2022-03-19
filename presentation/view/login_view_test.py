@@ -1,3 +1,4 @@
+import os
 from flask import Flask
 
 from presentation.view.login_view import login_view
@@ -6,6 +7,7 @@ from presentation.view.login_view import login_view
 def get_app():
     app = Flask(__name__)
     app.register_blueprint(login_view)
+    os.environ['FLASK_ENV'] = 'test'
     return app
 
 
