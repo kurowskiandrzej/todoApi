@@ -24,4 +24,6 @@ class LoginUserUseCase:
             response.status_code = 401
             return response
 
-        return Response()
+        response = make_response()
+        response.status_code = 200
+        return response
