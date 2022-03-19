@@ -1,5 +1,5 @@
 import flask
-from flask import Blueprint, request
+from flask import Flask, Blueprint, request
 
 from dependency_injection.di import inject
 from presentation.view_model.login_view_model import LoginViewModel
@@ -7,12 +7,11 @@ from presentation.view_model.login_view_model import LoginViewModel
 login_view = Blueprint('login_view', __name__, url_prefix='/api')
 
 
-def get_view_model(app):
+def get_view_model(app: Flask) -> LoginViewModel:
     if app.config['TESTING']:
-        view_model = inject('LoginViewModelFake')
+        return inject('LoginViewModelFake')
     else:
-        view_model = inject(LoginViewModel)
-    return view_model
+        return inject(LoginViewModel)
 
 
 @login_view.route('/login', methods=['POST'])
