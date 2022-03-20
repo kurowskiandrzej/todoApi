@@ -1,8 +1,9 @@
 import flask
-from flask import Flask, Blueprint, request, g
+from flask import Flask, Blueprint, request, make_response
 
 from dependency_injection.di import inject
 from presentation.view_model.login_view_model import LoginViewModel
+from localization.locales import get_string_resource
 
 login_view = Blueprint('login_view', __name__, url_prefix='/api')
 
@@ -23,10 +24,14 @@ def login():
 
     locale = request.headers.get('Accept-Language')
 
-    response = view_model.login(
+    response_data = view_model.login(
         email,
-        password,
-        locale
+        password
     )
+
+    response = make_response()
+    response.status_code = response_data['status_code']
+    if response_data['string_resource_id'] is not None:
+        response.data = get_string_resource(locale, response_data['string_resource_id'])
 
     return response
