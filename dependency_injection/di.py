@@ -5,5 +5,5 @@ from dependency_injection.use_case_provider import use_cases
 register = view_models | repositories | use_cases
 
 
-def inject(key):
+def resolve(key):
     return register[key]

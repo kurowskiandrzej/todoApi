@@ -47,6 +47,24 @@ def test_login_route_post_method_with_invalid_password_returns_status_code_401()
             'password': 'xxxx'
         },
         headers={
+            'Accept-Language': 'eng'
+        }
+    )
+
+    assert response.status_code == 401
+
+
+def test_login_route_post_method_with_invalid_email_returns_status_code_401():
+    app = get_app()
+    client = app.test_client()
+    response = client.post(
+        '/api/login',
+        content_type='multipart/form-data',
+        data={
+            'email': 'userMail.com',
+            'password': 'MyV4L!DPassword'
+        },
+        headers={
             'Accept-Language': 'pl'
         }
     )

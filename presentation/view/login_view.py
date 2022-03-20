@@ -1,7 +1,7 @@
 import flask
 from flask import Flask, Blueprint, request, make_response
 
-from dependency_injection.di import inject
+from dependency_injection.di import resolve
 from presentation.view_model.login_view_model import LoginViewModel
 from localization.locales import get_string_resource
 
@@ -10,9 +10,9 @@ login_view = Blueprint('login_view', __name__, url_prefix='/api')
 
 def get_view_model(app: Flask) -> LoginViewModel:
     if app.config['TESTING']:
-        return inject('LoginViewModelFake')
+        return resolve('LoginViewModelFake')
     else:
-        return inject(LoginViewModel)
+        return resolve(LoginViewModel)
 
 
 @login_view.route('/login', methods=['POST'])
