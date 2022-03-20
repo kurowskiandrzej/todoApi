@@ -5,5 +5,4 @@ from domain.repository.to_do_repository import ToDoRepository
 repositories = {
     ToDoRepository: ToDoRepositoryImpl(),
     ToDoRepositoryFake: ToDoRepositoryFake()
-
 }

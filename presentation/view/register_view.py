@@ -11,6 +11,6 @@ def register():
     email = request.form['email']
     password = request.form['password']
 
-    response = register_view_model.register(email, password)
+    response = register_view_model.__register(email, password)
 
     return response

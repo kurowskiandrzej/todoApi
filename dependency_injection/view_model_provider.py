@@ -10,7 +10,3 @@ view_models = {
     'LoginViewModelFake': LoginViewModel(use_cases['LoginViewModelUseCasesFake']),
     RegisterViewModel: RegisterViewModel(use_cases[RegisterViewModelUseCases])
 }
-
-
-def inject(key):
-    return view_models[key]
