@@ -1,5 +1,5 @@
 import flask
-from flask import Flask, Blueprint, request
+from flask import Flask, Blueprint, request, g
 
 from dependency_injection.di import inject
 from presentation.view_model.login_view_model import LoginViewModel
@@ -17,9 +17,16 @@ def get_view_model(app: Flask) -> LoginViewModel:
 @login_view.route('/login', methods=['POST'])
 def login():
     view_model = get_view_model(flask.current_app)
+
     email = request.form['email']
     password = request.form['password']
 
-    response = view_model.login(email, password)
+    locale = request.headers.get('Accept-Language')
+
+    response = view_model.login(
+        email,
+        password,
+        locale
+    )
 
     return response

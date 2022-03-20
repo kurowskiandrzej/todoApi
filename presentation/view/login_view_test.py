@@ -36,7 +36,7 @@ def test_login_route_post_method_with_correct_password_returns_status_code_200()
     assert response.status_code == 200
 
 
-def test_login_route_post_method_with_incorrect_password_returns_status_code_401():
+def test_login_route_post_method_with_invalid_password_returns_status_code_401():
     app = get_app()
     client = app.test_client()
     response = client.post(
