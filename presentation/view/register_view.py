@@ -29,6 +29,8 @@ def register():
         password
     )
 
+    print(response_data)
+
     response = make_response()
     response.status_code = response_data['status_code']
     if ['string_resource_id'] in response_data:
