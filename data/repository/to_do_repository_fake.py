@@ -1,4 +1,5 @@
 from werkzeug.security import generate_password_hash
+from sqlalchemy import exc
 
 from common.constants import SALT_LENGTH, PASSWORD_HASH_METHOD
 from domain.repository.to_do_repository import ToDoRepository
@@ -19,4 +20,6 @@ class ToDoRepositoryFake(ToDoRepository):
         return self.__user_email_with_password.get(email)
 
     def register(self, email: str, password: str) -> int:
-        pass
+        if email in self.__user_email_with_password:
+            raise exc.IntegrityError
+        return len(self.__user_email_with_password) + 1
