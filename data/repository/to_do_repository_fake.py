@@ -16,9 +16,7 @@ class ToDoRepositoryFake(ToDoRepository):
     }
 
     def get_password_hash_by_user_email(self, email: str) -> str | None:
-        if email not in self.__user_email_with_password:
-            return None
-        return self.__user_email_with_password[email]
+        return self.__user_email_with_password.get(email)
 
     def register(self, email: str, password: str):
         pass

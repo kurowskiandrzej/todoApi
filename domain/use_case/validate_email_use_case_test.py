@@ -1,5 +1,8 @@
-from domain.use_case.validate_email_use_case import validate_email_use_case
+from domain.use_case.validate_email_use_case import ValidateEmailUseCase
 from common.constants import EMAIL_MAXIMUM_LENGTH
+
+
+validate_email_use_case = ValidateEmailUseCase()
 
 
 def test_returns_true_when_provided_with_valid_email():
