@@ -1,11 +1,11 @@
 import os
 import sqlalchemy
 
-db_user = os.environ["DB_USER"]
-db_pass = os.environ["DB_PASS"]
-db_name = os.environ["DB_NAME"]
+db_user = os.environ.get("DB_USER", "")
+db_pass = os.environ.get("DB_PASS", "")
+db_name = os.environ.get("DB_NAME", "")
 db_socket_dir = os.environ.get("DB_SOCKET_DIR", "/cloudsql")
-cloud_sql_connection_name = os.environ["CLOUD_SQL_CONNECTION_NAME"]
+cloud_sql_connection_name = os.environ.get("CLOUD_SQL_CONNECTION_NAME", "")
 
 db_config = {
     # [START cloud_sql_postgres_sqlalchemy_limit]
