@@ -3,6 +3,7 @@ from flask import Blueprint, request, Flask, make_response
 from dependency_injection.di import resolve
 from presentation.view_model.register_view_model import RegisterViewModel
 from localization.locales import get_string_resource
+from sqlalchemy import exc
 
 register_view = Blueprint('register_view', __name__, url_prefix='/api')
 register_view_model = resolve(RegisterViewModel)
@@ -24,10 +25,16 @@ def register():
 
     locale = request.headers.get('Accept-Language')
 
-    response_data = view_model.register(
-        email,
-        password
-    )
+    try:
+        response_data = view_model.register(
+            email,
+            password
+        )
+    except exc.IntegrityError:
+        response = make_response()
+        response.status_code = 401
+        response.data = get_string_resource(locale, 'user_already_exists')
+        return response
 
     print(response_data)
 
