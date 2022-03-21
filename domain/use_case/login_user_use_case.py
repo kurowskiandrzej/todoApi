@@ -29,5 +29,4 @@ class LoginUserUseCase:
 
         return {
             'status_code': 200,
-            'string_resource_id': None
         }

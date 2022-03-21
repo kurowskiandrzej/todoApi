@@ -15,13 +15,15 @@ class ToDoDao:
 
     @staticmethod
     def register(email: str, password_hash: str) -> int:
-        user_id = db.execute(
+        result = db.execute(
             """
             INSERT INTO user_account (email, password, created_on) 
             VALUES (%s, %s, CURRENT_TIMESTAMP) 
             RETURNING id
             """, email, password_hash
         ).fetchone()
+
+        user_id, = result
 
         return user_id
 
