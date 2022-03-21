@@ -5,19 +5,19 @@ from domain.repository.to_do_repository import ToDoRepository
 
 class LoginUserUseCase:
     def __init__(self, repository: ToDoRepository):
-        self.repository = repository
+        self.__repository = repository
 
-    def login(self, email: str, password: str) -> dict:
-        hashed_pwd = self.repository.get_password_hash_by_user_email(email)
+    def __call__(self, email: str, password: str) -> dict:
+        hashed_password = self.__repository.get_password_hash_by_user_email(email)
 
-        if hashed_pwd is None:
+        if hashed_password is None:
             return {
                 'status_code': 401,
                 'string_resource_id': 'no_such_user'
             }
 
         is_password_correct = check_password_hash(
-            hashed_pwd,
+            hashed_password,
             password
         )
 

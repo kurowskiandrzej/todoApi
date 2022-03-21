@@ -18,4 +18,4 @@ class LoginViewModel:
                 'string_resource_id': 'incorrect_password'
             }
 
-        return self.__use_case.login_user.login(email, password)
+        return self.__use_case.login_user(email, password)

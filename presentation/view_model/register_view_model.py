@@ -1,4 +1,3 @@
-from flask import make_response
 from domain.use_case.use_case_wrapper.register_view_model_use_cases import RegisterViewModelUseCases
 
 
@@ -6,9 +5,22 @@ class RegisterViewModel:
     def __init__(self, use_case: RegisterViewModelUseCases):
         self.__use_case = use_case
 
-    @staticmethod
-    def register(email, password):
-        response = make_response(f'response success email: {email} password: {password}')
-        response.status_code = 200
+    def register(self, email, password) -> dict:
+        if self.__use_case.validate_email(email) is False:
+            return {
+                'status_code': 401,
+                'string_resource_id': 'incorrect_email_format'
+            }
 
-        return response
+        if self.__use_case.validate_password(password) is False:
+            return {
+                'status_code': 401,
+                'string_resource_id': 'incorrect_password'
+            }
+
+        user_id = self.__use_case.register_user(email, password)
+
+        return {
+            'status_code': 200,
+            'user_id': user_id
+        }

@@ -3,9 +3,9 @@ import abc
 
 class ToDoRepository(abc.ABC):
     @abc.abstractmethod
-    def get_password_hash_by_user_email(self, email: str):
+    def get_password_hash_by_user_email(self, email: str) -> str:
         pass
 
     @abc.abstractmethod
-    def register(self, email: str, password: str):
+    def register(self, email: str, password: str) -> int:
         pass
