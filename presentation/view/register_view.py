@@ -36,8 +36,6 @@ def register():
     if ['string_resource_id'] in response_data:
         response.data = get_string_resource(locale, response_data['string_resource_id'])
     elif 'user_id' in response_data:
-        response.data = {
-            'user_id': response_data['user_id']
-        }
+        response.data = response_data['user_id']
 
     return response
