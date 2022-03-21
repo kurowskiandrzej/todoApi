@@ -7,11 +7,14 @@ class RegisterUserUseCase:
     def __init__(self, repository: ToDoRepository):
         self.__repository = repository
 
-    def __call__(self, email: str, password: str) -> int:
+    def __call__(self, email: str, password: str) -> dict:
         hashed_password = generate_password_hash(
             password,
             method=PASSWORD_HASH_METHOD,
             salt_length=SALT_LENGTH
         )
 
-        return self.__repository.register(email, hashed_password)
+        return {
+            'status_code': 200,
+            'user_id': self.__repository.register(email, hashed_password)
+        }
