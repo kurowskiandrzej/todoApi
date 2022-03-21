@@ -1,13 +1,18 @@
+from domain.repository.to_do_repository import ToDoRepository
+from werkzeug.security import generate_password_hash
+from common.constants import PASSWORD_HASH_METHOD, SALT_LENGTH
+
+
 class RegisterUserUseCase:
     def __init__(self, repository: ToDoRepository):
         self.repository = repository
 
-    def register(self, email: str) -> Response:
-        password = self.repository.get_password_hash_by_user_email(email)
+    def register(self, email: str, password: str) -> dict:
+        password_hash = generate_password_hash(
+            password,
+            method=PASSWORD_HASH_METHOD,
+            salt_length=SALT_LENGTH
+        )
 
-        if password is None:
-            response = make_response(get_string_resource(g.locale, 'no_such_user'))
-            response.status_code = 401
-            return response
 
-        return Response()
+        return {}
