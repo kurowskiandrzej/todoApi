@@ -8,16 +8,16 @@ class LoginUserUseCase:
         self.__repository = repository
 
     def __call__(self, email: str, password: str) -> dict:
-        hashed_password = self.__repository.get_password_hash_by_user_email(email)
+        login_result = self.__repository.login(email)
 
-        if hashed_password is None:
+        if login_result is None:
             return {
                 'status_code': 401,
                 'string_resource_id': 'no_such_user'
             }
 
         is_password_correct = check_password_hash(
-            hashed_password,
+            login_result['hashed_password'],
             password
         )
 
@@ -28,5 +28,5 @@ class LoginUserUseCase:
             }
 
         return {
-            'status_code': 200,
+            'user_id': login_result['user_id']
         }

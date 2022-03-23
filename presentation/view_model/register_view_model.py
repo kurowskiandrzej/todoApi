@@ -24,3 +24,6 @@ class RegisterViewModel:
             'status_code': 200,
             'user_id': user_id
         }
+
+    def get_jwt(self, secret: str, user_id: int):
+        return self.__use_case.encode_jwt(secret, user_id)

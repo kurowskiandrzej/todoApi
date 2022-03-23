@@ -16,10 +16,18 @@ class ToDoRepositoryFake(ToDoRepository):
         'user@mail.com': __hashed_password
     }
 
-    def get_password_hash_by_user_email(self, email: str) -> str | None:
-        return self.__user_email_with_password.get(email)
+    def login(self, email: str) -> dict | None:
+        hashed_password = self.__user_email_with_password.get(email)
+
+        if hashed_password is None:
+            return None
+
+        return {
+            'user_id': 1,
+            'hashed_password': hashed_password
+        }
 
     def register(self, email: str, password: str) -> int:
         if email in self.__user_email_with_password:
             raise exc.IntegrityError
-        return len(self.__user_email_with_password) + 1
+        return len(self.__user_email_with_password)

@@ -18,4 +18,15 @@ class LoginViewModel:
                 'string_resource_id': 'incorrect_password'
             }
 
-        return self.__use_case.login_user(email, password)
+        login_result = self.__use_case.login_user(email, password)
+
+        if 'string_resource_id' in login_result:
+            return login_result
+
+        return {
+            'status_code': 200,
+            'user_id': login_result['user_id']
+        }
+
+    def get_jwt(self, secret: str, user_id: int):
+        return self.__use_case.encode_jwt(secret, user_id)

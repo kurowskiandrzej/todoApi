@@ -13,7 +13,7 @@ def test_login_with_valid_credentials_returns_status_code_200_and_no_string_reso
 
     assert result == {
         'status_code': 200,
-        'string_resource_id': None
+        'user_id': 1
     }
 
 

@@ -3,15 +3,23 @@ from data.db.postgres import db
 
 class ToDoDao:
     @staticmethod
-    def get_password_by_email(email: str) -> str | None:
-        user_id = db.execute(
+    def login(email: str) -> dict | None:
+        result = db.execute(
             """
-            SELECT password FROM user_account
+            SELECT id, password FROM user_account
             WHERE email = %s
             """, [email]
         ).fetchone()
 
-        return user_id
+        if result is None:
+            return None
+
+        user_id, hashed_password = result
+
+        return {
+            'user_id': user_id,
+            'hashed_password': hashed_password
+        }
 
     @staticmethod
     def register(email: str, password_hash: str) -> int:
