@@ -46,6 +46,7 @@ def login():
         response.set_cookie(
             key='token',
             value=token,
+            secure=True,
             httponly=True
         )
 
