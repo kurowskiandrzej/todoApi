@@ -33,7 +33,7 @@ def login():
     response.status_code = response_data['status_code']
     if 'string_resource_id' in response_data:
         response.data = get_string_resource(locale, response_data['string_resource_id'])
-    if response_data.get('status_code') == 200:
-        view_model.get_jwt()
+    else:
+        response.data = response_data['user_id']
 
     return response
