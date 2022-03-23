@@ -51,6 +51,11 @@ def register():
             jwt_secret_key,
             response_data['user_id']
         )
-        response.set_cookie('token', token)
+
+        response.set_cookie(
+            key='token',
+            value=token,
+            httponly=True
+        )
 
     return response
