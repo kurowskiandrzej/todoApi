@@ -22,8 +22,8 @@ def get_view_model(app: Flask) -> ListViewModel:
         return resolve(ListViewModel)
 
 
-@list_view.post('/todo<list_name>')
-def post_list(list_name):
+@list_view.post('/todo')
+def post_list():
     view_model = get_view_model(flask.current_app)
     token = request.cookies.get('token')
 
@@ -33,6 +33,7 @@ def post_list(list_name):
         return JWTHelper.create_invalid_jwt_response()
 
     user_id = token_data['uid']
+    list_name = request.args.get('list_name')
     locale = request.headers.get('Accept-Language')
 
     try:
@@ -43,7 +44,7 @@ def post_list(list_name):
         response.data = get_string_resource(locale, 'list_with_name_already_exists')
         return response
 
-    return jsonify({'list_id': list_id})
+    return jsonify({'list_id': list_id}), 200
 
 
 @list_view.get('/todo')
