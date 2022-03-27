@@ -28,5 +28,5 @@ class LoginViewModel:
             'user_id': login_result['user_id']
         }
 
-    def get_jwt(self, secret: str, user_id: int):
+    def get_jwt(self, secret: str, user_id: int) -> str:
         return self.__use_case.encode_jwt(secret, user_id)
