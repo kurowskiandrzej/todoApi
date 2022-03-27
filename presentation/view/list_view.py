@@ -40,7 +40,9 @@ def get_list():
     lists = view_model.get_all_lists(token_data['uid'])
     response = make_response()
     response.status_code = 200
-    response.data = lists
+    response.data = {
+        'lists': lists
+    }
 
     return response
 
