@@ -29,7 +29,7 @@ class ToDoRepositoryFake(ToDoRepository):
 
     def register(self, email: str, password: str) -> int:
         if email in self.__user_email_with_password:
-            raise exc.IntegrityError
+            raise exc.IntegrityError("user already exists", None, None)
         return len(self.__user_email_with_password)
 
     def get_all_lists(self, user_id: int) -> list:
