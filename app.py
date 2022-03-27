@@ -5,11 +5,13 @@ from flask import Flask
 # Blueprints
 from presentation.view.login_view import login_view
 from presentation.view.register_view import register_view
+from presentation.view.list_view import list_view
 
 app = Flask(__name__)
 
 app.register_blueprint(login_view)
 app.register_blueprint(register_view)
+app.register_blueprint(list_view)
 
 
 if __name__ == "__main__":

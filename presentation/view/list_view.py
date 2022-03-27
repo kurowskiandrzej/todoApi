@@ -1,14 +1,22 @@
 import os
 
 import flask
+import jwt
 from flask import Flask, Blueprint, request, make_response
 
 from dependency_injection.di import resolve
-from localization.locales import get_string_resource
+from presentation.view_model.list_view_model import ListViewModel
 
 list_view = Blueprint('list_view', __name__, url_prefix='/api')
 
 jwt_secret_key = os.environ.get("JWT_SECRET_KEY", "fakeSecret")
+
+
+def get_view_model(app: Flask) -> ListViewModel:
+    if app.config['TESTING']:
+        return resolve('ListViewModelFake')
+    else:
+        return resolve(ListViewModel)
 
 
 @list_view.post('/todo')
@@ -18,9 +26,23 @@ def post_list():
 
 @list_view.get('/todo')
 def get_list():
-    return make_response(
-        {'status': 'success'}
-    )
+    view_model = get_view_model(flask.current_app)
+    token = request.cookies.get('token')
+
+    try:
+        token_data = view_model.decode_token(jwt_secret_key, token)
+    except (jwt.ExpiredSignatureError, jwt.exceptions.DecodeError):
+        response = make_response()
+        response.set_cookie('token', '', expires=0)
+        response.status_code = 401
+        return response
+
+    lists = view_model.get_all_lists(token_data['uid'])
+    response = make_response()
+    response.status_code = 200
+    response.data = lists
+
+    return response
 
 
 @list_view.patch('/todo')

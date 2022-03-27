@@ -8,3 +8,6 @@ class ToDoRepositoryImpl(ToDoRepository):
 
     def register(self, email: str, password_hash: str) -> int:
         return ToDoDao.register(email, password_hash)
+
+    def get_all_lists(self, user_id: int) -> list:
+        return ToDoDao.get_all_to_do_lists(user_id)

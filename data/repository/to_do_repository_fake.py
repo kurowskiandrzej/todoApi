@@ -31,3 +31,17 @@ class ToDoRepositoryFake(ToDoRepository):
         if email in self.__user_email_with_password:
             raise exc.IntegrityError
         return len(self.__user_email_with_password)
+
+    def get_all_lists(self, user_id: int) -> list:
+        return [
+            {
+                'id': 1,
+                'name': 'first',
+                'created': '01-01-2000'
+            },
+            {
+                'id': 2,
+                'name': 'second',
+                'created': '01-01-2000'
+            }
+        ]
