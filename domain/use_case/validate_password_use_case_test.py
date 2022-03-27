@@ -32,3 +32,15 @@ def test_returns_false_when_password_doesnt_contain_number():
 
 def test_returns_false_when_password_doesnt_contain_special_character():
     assert validate_password("MYV4lPassword") is False
+
+
+def test_returns_false_when_password_starts_with_white_space():
+    assert validate_password(" MyV4L!DPassword") is False
+
+
+def test_returns_false_when_password_ends_with_white_space():
+    assert validate_password("MyV4L!DPassword ") is False
+
+
+def test_returns_false_when_password_contains_white_space():
+    assert validate_password("MyV4L!D Password") is False
