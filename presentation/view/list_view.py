@@ -2,7 +2,7 @@ import os
 
 import flask
 import jwt
-from flask import Flask, Blueprint, request, make_response
+from flask import Flask, Blueprint, request, make_response, jsonify
 
 from dependency_injection.di import resolve
 from presentation.view_model.list_view_model import ListViewModel
@@ -38,13 +38,8 @@ def get_list():
         return response
 
     lists = view_model.get_all_lists(token_data['uid'])
-    response = make_response()
-    response.status_code = 200
-    response.data = {
-        'lists': lists
-    }
 
-    return response
+    return jsonify({'lists': lists}), 200
 
 
 @list_view.patch('/todo')
