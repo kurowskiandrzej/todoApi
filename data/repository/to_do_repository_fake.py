@@ -16,6 +16,19 @@ class ToDoRepositoryFake(ToDoRepository):
         'user@mail.com': __hashed_password
     }
 
+    __to_do_lists = [
+        {
+            'id': 1,
+            'name': 'first',
+            'created': '01-01-2000'
+        },
+        {
+            'id': 2,
+            'name': 'second',
+            'created': '01-01-2000'
+        }
+    ]
+
     def login(self, email: str) -> dict | None:
         hashed_password = self.__user_email_with_password.get(email)
 
@@ -32,16 +45,15 @@ class ToDoRepositoryFake(ToDoRepository):
             raise exc.IntegrityError("user already exists", None, None)
         return len(self.__user_email_with_password)
 
-    def get_all_lists(self, user_id: int) -> list:
-        return [
+    def post_list(self, user_id: int, name: str) -> int:
+        self.__to_do_lists.append(
             {
-                'id': 1,
-                'name': 'first',
-                'created': '01-01-2000'
-            },
-            {
-                'id': 2,
-                'name': 'second',
+                'id': user_id,
+                'name': name,
                 'created': '01-01-2000'
             }
-        ]
+        )
+        return len(self.__to_do_lists)
+
+    def get_all_lists(self, user_id: int) -> list:
+        return self.__to_do_lists

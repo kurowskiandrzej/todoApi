@@ -9,5 +9,8 @@ class ToDoRepositoryImpl(ToDoRepository):
     def register(self, email: str, password_hash: str) -> int:
         return ToDoDao.register(email, password_hash)
 
+    def post_list(self, user_id: int, name: str) -> int:
+        return ToDoDao.insert_to_do_list(user_id, name)
+
     def get_all_lists(self, user_id: int) -> list:
         return ToDoDao.get_all_to_do_lists(user_id)
