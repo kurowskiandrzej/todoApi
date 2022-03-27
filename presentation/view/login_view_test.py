@@ -18,6 +18,30 @@ def test_login_route_get_method_returns_status_code_405():
     assert response.status_code == 405
 
 
+def test_login_route_delete_method_returns_status_code_405():
+    app = get_app()
+    client = app.test_client()
+    response = client.delete('/api/login')
+
+    assert response.status_code == 405
+
+
+def test_login_route_put_method_returns_status_code_405():
+    app = get_app()
+    client = app.test_client()
+    response = client.put('/api/login')
+
+    assert response.status_code == 405
+
+
+def test_login_route_patch_method_returns_status_code_405():
+    app = get_app()
+    client = app.test_client()
+    response = client.patch('/api/login')
+
+    assert response.status_code == 405
+
+
 def test_login_route_post_method_with_correct_password_returns_status_code_200():
     app = get_app()
     client = app.test_client()
