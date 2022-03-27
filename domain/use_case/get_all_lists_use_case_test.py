@@ -7,7 +7,7 @@ use_case = GetAllListsUseCase(resolve(ToDoRepositoryFake))
 lists = use_case(1)
 
 
-def test_returns_proper_list():
+def test_use_case_returns_not_empty_list():
     assert len(lists) > 0
 
 
