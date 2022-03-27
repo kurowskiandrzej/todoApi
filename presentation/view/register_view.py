@@ -20,7 +20,7 @@ def get_view_model(app: Flask) -> RegisterViewModel:
         return resolve(RegisterViewModel)
 
 
-@register_view.route('/register', methods=['POST'])
+@register_view.post('/register')
 def register():
     view_model = get_view_model(flask.current_app)
 

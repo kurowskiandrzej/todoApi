@@ -19,7 +19,7 @@ def get_view_model(app: Flask) -> LoginViewModel:
         return resolve(LoginViewModel)
 
 
-@login_view.route('/login', methods=['POST'])
+@login_view.post('/login')
 def login():
     view_model = get_view_model(flask.current_app)
 

@@ -3,5 +3,6 @@ eng = {
     'unknown_error': 'Unknown error',
     'incorrect_password': 'Incorrect Password',
     'user_already_exists': 'User already exists',
-    'incorrect_email_format': 'Incorrect e-mail format'
+    'incorrect_email_format': 'Incorrect e-mail format',
+    'login_required': 'Login required'
 }

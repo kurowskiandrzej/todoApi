@@ -37,7 +37,7 @@ db_config = {
     # [END cloud_sql_postgres_sqlalchemy_lifetime]
 }
 
-pool = sqlalchemy.create_engine(
+db = sqlalchemy.create_engine(
     sqlalchemy.engine.url.URL.create(
         drivername="postgresql+pg8000",
         username=db_user,
@@ -51,5 +51,3 @@ pool = sqlalchemy.create_engine(
     ),
     **db_config
 )
-
-db = pool
