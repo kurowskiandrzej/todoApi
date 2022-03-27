@@ -16,8 +16,6 @@ class ToDoDao:
 
         user_id, hashed_password = result
 
-        print(user_id)
-
         return {
             'user_id': user_id,
             'hashed_password': hashed_password
