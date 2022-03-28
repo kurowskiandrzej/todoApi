@@ -6,7 +6,7 @@ class LoginViewModel:
         self.__use_case = use_case
 
     def get_jwt(self, secret: str, user_id: int) -> str:
-            return self.__use_case.encode_jwt(secret, user_id)
+        return self.__use_case.encode_jwt(secret, user_id)
 
     def login(self, email: str, password: str) -> dict:
         if self.__use_case.validate_email(email) is False:
