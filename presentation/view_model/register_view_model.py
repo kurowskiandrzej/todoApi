@@ -5,6 +5,9 @@ class RegisterViewModel:
     def __init__(self, use_case: RegisterViewModelUseCases):
         self.__use_case = use_case
 
+    def get_jwt(self, secret: str, user_id: int):
+        return self.__use_case.encode_jwt(secret, user_id)
+
     def register(self, email, password) -> dict:
         if self.__use_case.validate_email(email) is False:
             return {
@@ -24,6 +27,3 @@ class RegisterViewModel:
             'status_code': 200,
             'user_id': user_id
         }
-
-    def get_jwt(self, secret: str, user_id: int):
-        return self.__use_case.encode_jwt(secret, user_id)
