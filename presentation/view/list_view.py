@@ -32,15 +32,21 @@ def post_list():
     except (jwt.ExpiredSignatureError, jwt.exceptions.DecodeError):
         return JWTHelper.create_invalid_jwt_response()
 
-    user_id = token_data['uid']
-    list_name = request.args.get('list_name')
     locale = request.headers.get('Accept-Language')
+    user_id = token_data['uid']
+    list_name = (request.args.get('list_name')).strip()
+
+    if view_model.validate_list_name(list_name) is False:
+        response = make_response()
+        response.status_code = 403
+        response.data = get_string_resource(locale, 'incorrect_name')
+        return response
 
     try:
         list_id = view_model.post_list(user_id, list_name)
     except exc.IntegrityError:
         response = make_response()
-        response.status_code = 401
+        response.status_code = 409
         response.data = get_string_resource(locale, 'list_with_name_already_exists')
         return response
 

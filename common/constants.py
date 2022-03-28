@@ -10,3 +10,6 @@ JWT_LIFESPAN = 7
 # Regex
 EMAIL_PATTERN = r'^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$'
 PASSWORD_PATTERN = r'^(?=.*[0-9])(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z])(?!.*[\s])(?=.{8,})'
+
+# Validation
+LIST_NAME_LENGTH_LIMIT = 200

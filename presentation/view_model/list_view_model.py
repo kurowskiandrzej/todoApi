@@ -13,3 +13,6 @@ class ListViewModel:
 
     def get_all_lists(self, user_id):
         return self.__use_case.get_all_lists(user_id)
+
+    def validate_list_name(self, list_name: str):
+        return self.__use_case.validate_list_name(list_name)

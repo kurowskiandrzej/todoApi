@@ -5,5 +5,6 @@ eng = {
     'user_already_exists': 'User already exists',
     'incorrect_email_format': 'Incorrect e-mail format',
     'login_required': 'Login required',
-    'list_with_name_already_exists': 'List with provided name already exists'
+    'list_with_name_already_exists': 'List with provided name already exists',
+    'incorrect_name': 'Incorrect name'
 }
