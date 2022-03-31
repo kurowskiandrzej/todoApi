@@ -56,7 +56,7 @@ class ToDoDao:
             """
             SELECT id, name, created_on 
             FROM to_do_list
-            WHERE user_id = user_id
+            WHERE user_id = %s
             """, [user_id]
         ).fetchall()
 
