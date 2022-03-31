@@ -100,8 +100,8 @@ def patch_list(list_id):
     return response
 
 
-@list_view.delete('/todo')
-def delete_list():
+@list_view.delete('/todo/<int:list_id>')
+def delete_list(list_id):
     view_model = get_view_model(flask.current_app)
     token = request.cookies.get('token')
 
@@ -109,3 +109,12 @@ def delete_list():
         token_data = view_model.decode_token(jwt_secret_key, token)
     except (jwt.ExpiredSignatureError, jwt.exceptions.DecodeError):
         return JWTHelper.create_invalid_jwt_response()
+
+    user_id = token_data['uid']
+
+    view_model.delete_list(user_id, list_id)
+
+    response = make_response()
+    response.status_code = 200
+
+    return response

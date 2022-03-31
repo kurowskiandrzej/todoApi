@@ -21,3 +21,7 @@ class ToDoRepository(abc.ABC):
     @abc.abstractmethod
     def get_all_lists(self, user_id: int) -> list:
         pass
+
+    @abc.abstractmethod
+    def delete_to_do_list(self, user_id: int, list_id: int):
+        pass

@@ -14,6 +14,9 @@ class ListViewModel:
     def update_list(self, user_id: int, list_id: int, updated_name: str):
         self.__use_case.update_list_name(user_id, list_id, updated_name)
 
+    def delete_list(self, user_id: int, list_id: int):
+        self.__use_case.delete_list(user_id, list_id)
+
     def validate_list_name(self, list_name: str):
         return self.__use_case.validate_list_name(list_name)
 

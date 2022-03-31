@@ -14,6 +14,7 @@ from domain.use_case.get_all_lists_use_case import GetAllListsUseCase
 from domain.use_case.post_list_use_case import PostListUseCase
 from domain.use_case.validate_list_name_use_case import ValidateListNameUseCase
 from domain.use_case.update_list_name_use_case import UpdateListNameUseCase
+from domain.use_case.delete_list_use_case import DeleteListUseCase
 
 use_cases = {
     LoginViewModelUseCases: LoginViewModelUseCases(
@@ -38,6 +39,7 @@ use_cases = {
         DecodeJwtUseCase(),
         GetAllListsUseCase(repositories[ToDoRepository]),
         PostListUseCase(repositories[ToDoRepository]),
+        DeleteListUseCase(repositories[ToDoRepository]),
         UpdateListNameUseCase(repositories[ToDoRepository]),
         ValidateListNameUseCase()
     ),
@@ -45,6 +47,7 @@ use_cases = {
         DecodeJwtUseCase(),
         GetAllListsUseCase(repositories[ToDoRepositoryFake]),
         PostListUseCase(repositories[ToDoRepositoryFake]),
+        DeleteListUseCase(repositories[ToDoRepositoryFake]),
         UpdateListNameUseCase(repositories[ToDoRepositoryFake]),
         ValidateListNameUseCase()
     )

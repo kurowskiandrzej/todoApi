@@ -17,3 +17,6 @@ class ToDoRepositoryImpl(ToDoRepository):
 
     def get_all_lists(self, user_id: int) -> list:
         return ToDoDao.get_all_to_do_lists(user_id)
+
+    def delete_to_do_list(self, user_id: int, list_id: int):
+        ToDoDao.delete_to_do_list(user_id, list_id)

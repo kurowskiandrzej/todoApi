@@ -60,3 +60,6 @@ class ToDoRepositoryFake(ToDoRepository):
 
     def get_all_lists(self, user_id: int) -> list:
         return self.__to_do_lists
+
+    def delete_to_do_list(self, user_id: int, list_id: int):
+        pass
