@@ -32,9 +32,9 @@ def post_list():
     except (jwt.ExpiredSignatureError, jwt.exceptions.DecodeError):
         return JWTHelper.create_invalid_jwt_response()
 
+    list_name = (request.args.get('list_name')).strip()
     locale = request.headers.get('Accept-Language')
     user_id = token_data['uid']
-    list_name = (request.args.get('list_name')).strip()
 
     if view_model.validate_list_name(list_name) is False:
         response = make_response()
@@ -78,9 +78,9 @@ def patch_list(list_id):
     except (jwt.ExpiredSignatureError, jwt.exceptions.DecodeError):
         return JWTHelper.create_invalid_jwt_response()
 
+    updated_name = (request.args.get('updated_name')).strip()
     locale = request.headers.get('Accept-Language')
     user_id = token_data['uid']
-    updated_name = (request.args.get('updated_name')).strip()
     response = make_response()
 
     if view_model.validate_list_name(updated_name) is False:

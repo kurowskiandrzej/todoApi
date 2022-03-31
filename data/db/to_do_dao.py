@@ -1,4 +1,5 @@
 from data.db.postgres import db
+from sqlalchemy.orm import Session
 
 
 class ToDoDao:
@@ -92,3 +93,54 @@ class ToDoDao:
             AND user_id = %s
             """, list_id, user_id
         )
+
+    @staticmethod
+    def insert_task(
+            user_id: int,
+            list_id: int,
+            task_value: str
+    ) -> int:
+        pass
+
+    @staticmethod
+    def insert_task_with_progress(
+            user_id: int,
+            list_id: int,
+            task_value: str,
+            start: int,
+            end: int,
+            current: int
+    ) -> int | None:
+        session = Session(db)
+
+        list_exists, = session.execute(
+            """
+            SELECT EXISTS (
+                SELECT 1 FROM to_do_list
+                WHERE user_id = %s
+                AND id = %s
+            )
+            """, user_id, list_id
+        ).fetchone()
+
+        if list_exists is False:
+            return None
+
+        task_id, = session.execute(
+            """
+            INSERT INTO task (list_id, value, created_on)
+            VALUES (%S, %s, CURRENT_TIMESTAMP)
+            RETURNING id
+            """, list_id, task_value
+        ).fetchone()
+
+        session .execute(
+            """
+            INSERT INTO task_progress (task_id, starting_value, end_value, current_progress)
+            VALUES (%s, %s, %s, %s)
+            """, task_id, start, end, current
+        )
+
+        return task_id
+
+

@@ -20,3 +20,33 @@ class ToDoRepositoryImpl(ToDoRepository):
 
     def delete_to_do_list(self, user_id: int, list_id: int):
         ToDoDao.delete_to_do_list(user_id, list_id)
+
+    def insert_task(
+            self,
+            user_id: int,
+            list_id: int,
+            task_value: str
+    ) -> int:
+        return ToDoDao.insert_task(
+            user_id,
+            list_id,
+            task_value
+        )
+
+    def insert_task_with_progress(
+            self,
+            user_id: int,
+            list_id: int,
+            task_value: str,
+            start: int,
+            end: int,
+            current: int
+    ) -> int:
+        return ToDoDao.insert_task_with_progress(
+            user_id,
+            list_id,
+            task_value,
+            start,
+            end,
+            current
+        )
