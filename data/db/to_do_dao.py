@@ -79,7 +79,7 @@ class ToDoDao:
             UPDATE to_do_list
             SET name = %s
             WHERE user_id = %s 
-            AND list_id = %s
+            AND id = %s
             """, updated_name, user_id, list_id
         )
 

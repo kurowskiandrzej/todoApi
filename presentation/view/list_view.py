@@ -68,8 +68,8 @@ def get_all_lists():
     return jsonify({'lists': lists}), 200
 
 
-@list_view.patch('/todo')
-def patch_list():
+@list_view.patch('/todo/<int:list_id>')
+def patch_list(list_id):
     view_model = get_view_model(flask.current_app)
     token = request.cookies.get('token')
 
@@ -81,7 +81,6 @@ def patch_list():
     locale = request.headers.get('Accept-Language')
     user_id = token_data['uid']
     updated_name = (request.args.get('updated_name')).strip()
-    list_id = int(request.args.get('list_id'))
     response = make_response()
 
     if view_model.validate_list_name(updated_name) is False:
