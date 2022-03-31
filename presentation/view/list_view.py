@@ -54,7 +54,7 @@ def post_list():
 
 
 @list_view.get('/todo')
-def get_list():
+def get_all_lists():
     view_model = get_view_model(flask.current_app)
     token = request.cookies.get('token')
 
@@ -77,6 +77,28 @@ def patch_list():
         token_data = view_model.decode_token(jwt_secret_key, token)
     except (jwt.ExpiredSignatureError, jwt.exceptions.DecodeError):
         return JWTHelper.create_invalid_jwt_response()
+
+    locale = request.headers.get('Accept-Language')
+    user_id = token_data['uid']
+    updated_name = (request.args.get('updated_name')).strip()
+    list_id = int(request.args.get('list_id'))
+    response = make_response()
+
+    if view_model.validate_list_name(updated_name) is False:
+        response.status_code = 403
+        response.data = get_string_resource(locale, 'incorrect_name')
+        return response
+
+    try:
+        view_model.update_list(user_id, list_id, updated_name)
+    except exc.IntegrityError:
+        response.status_code = 409
+        response.data = get_string_resource(locale, 'list_with_name_already_exists')
+        return response
+
+    response.status_code = 200
+
+    return response
 
 
 @list_view.delete('/todo')

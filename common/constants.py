@@ -13,3 +13,4 @@ PASSWORD_PATTERN = r'^(?=.*[0-9])(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z])(?!.*[\s]
 
 # Validation
 LIST_NAME_LENGTH_LIMIT = 200
+TASK_VALUE_LENGTH_LIMIT = 200

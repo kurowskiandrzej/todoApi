@@ -73,14 +73,14 @@ class ToDoDao:
         return result
 
     @staticmethod
-    def update_to_do_list(user_id: int, list_id: int, name_update: str):
+    def update_to_do_list(user_id: int, list_id: int, updated_name: str):
         db.execute(
             """
             UPDATE to_do_list
             SET name = %s
             WHERE user_id = %s 
             AND list_id = %s
-            """, name_update, user_id, list_id
+            """, updated_name, user_id, list_id
         )
 
     @staticmethod

@@ -12,5 +12,8 @@ class ToDoRepositoryImpl(ToDoRepository):
     def post_list(self, user_id: int, name: str) -> int:
         return ToDoDao.insert_to_do_list(user_id, name)
 
+    def update_to_do_list(self, user_id: int, list_id: int, updated_name: str):
+        ToDoDao.update_to_do_list(user_id, list_id, updated_name)
+
     def get_all_lists(self, user_id: int) -> list:
         return ToDoDao.get_all_to_do_lists(user_id)

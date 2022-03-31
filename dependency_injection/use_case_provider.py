@@ -13,6 +13,7 @@ from domain.use_case.decode_jwt_use_case import DecodeJwtUseCase
 from domain.use_case.get_all_lists_use_case import GetAllListsUseCase
 from domain.use_case.post_list_use_case import PostListUseCase
 from domain.use_case.validate_list_name_use_case import ValidateListNameUseCase
+from domain.use_case.update_list_name_use_case import UpdateListNameUseCase
 
 use_cases = {
     LoginViewModelUseCases: LoginViewModelUseCases(
@@ -37,12 +38,14 @@ use_cases = {
         DecodeJwtUseCase(),
         GetAllListsUseCase(repositories[ToDoRepository]),
         PostListUseCase(repositories[ToDoRepository]),
+        UpdateListNameUseCase(repositories[ToDoRepository]),
         ValidateListNameUseCase()
     ),
     'ListViewModelUseCasesFake': ListViewModelUseCases(
         DecodeJwtUseCase(),
         GetAllListsUseCase(repositories[ToDoRepositoryFake]),
         PostListUseCase(repositories[ToDoRepositoryFake]),
+        UpdateListNameUseCase(repositories[ToDoRepositoryFake]),
         ValidateListNameUseCase()
     )
 }

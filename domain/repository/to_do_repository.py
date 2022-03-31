@@ -15,5 +15,9 @@ class ToDoRepository(abc.ABC):
         pass
 
     @abc.abstractmethod
+    def update_to_do_list(self, user_id: int, list_id: int, updated_name: str):
+        pass
+
+    @abc.abstractmethod
     def get_all_lists(self, user_id: int) -> list:
         pass
