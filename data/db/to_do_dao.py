@@ -88,7 +88,7 @@ class ToDoDao:
         db.execute(
             """
             DELETE FROM to_do_list
-            WHERE id = list_id
-            AND user_id = user_id
-            """, user_id, list_id
+            WHERE id = %s
+            AND user_id = %s
+            """, list_id, user_id
         )
