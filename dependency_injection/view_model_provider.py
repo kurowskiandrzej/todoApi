@@ -5,6 +5,8 @@ from domain.use_case.use_case_wrapper.register_view_model_use_cases import Regis
 from dependency_injection.use_case_provider import use_cases
 from presentation.view_model.list_view_model import ListViewModel
 from domain.use_case.use_case_wrapper.list_view_model_use_cases import ListViewModelUseCases
+from presentation.view_model.task_view_model import TaskViewModel
+from domain.use_case.use_case_wrapper.task_view_model_use_cases import TaskViewModelUseCases
 
 
 view_models = {
@@ -12,5 +14,8 @@ view_models = {
     'LoginViewModelFake': LoginViewModel(use_cases['LoginViewModelUseCasesFake']),
     RegisterViewModel: RegisterViewModel(use_cases[RegisterViewModelUseCases]),
     ListViewModel: ListViewModel(use_cases[ListViewModelUseCases]),
-    'ListViewModelFake': ListViewModel(use_cases['ListViewModelUseCasesFake'])
+    'ListViewModelFake': ListViewModel(use_cases['ListViewModelUseCasesFake']),
+    TaskViewModel: TaskViewModel(use_cases[TaskViewModelUseCases]),
+    'TaskViewModelFake': TaskViewModel(use_cases['TaskViewModelUseCasesFake'])
+
 }
