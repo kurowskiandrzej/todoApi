@@ -8,5 +8,14 @@ class TaskViewModel:
     ):
         self.__use_case = use_case
 
-    def insert_task(self, user_id: int, list_id: int, task: dict) -> int:
-        return self.__use_case.insert_task(user_id, list_id, task)
+    def insert_task(
+            self,
+            user_id: int,
+            list_id: int,
+            task: dict
+    ) -> int:
+        return self.__use_case.insert_task(
+            user_id,
+            list_id,
+            task
+        )

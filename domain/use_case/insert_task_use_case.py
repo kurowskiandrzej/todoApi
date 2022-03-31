@@ -22,4 +22,8 @@ class InsertTaskUseCase:
                 task['current']
             )
         else:
-            pass
+            self.__repository.insert_task(
+                user_id,
+                list_id,
+                task['value']
+            )

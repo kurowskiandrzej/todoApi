@@ -1,7 +1,7 @@
 import os
 
 import flask
-from flask import Flask, Blueprint, request, make_response
+from flask import Flask, Blueprint, request, make_response, jsonify
 
 from dependency_injection.di import resolve
 from localization.locales import get_string_resource
@@ -28,12 +28,14 @@ def get_task(list_id):
 def post_task(list_id):
     view_model = get_view_model(flask.current_app)
 
-    view_model.insert_task(1, list_id, {
+    task_id = view_model.insert_task(1, list_id, {
         'value': 'test task',
         'start': 5,
         'end': 100,
         'current': 10
     })
+
+    return jsonify({'task_id': task_id}), 200
 
 
 @task_view.patch('/todo/<int:list_id>/<int:task_id>')
