@@ -141,6 +141,8 @@ class ToDoDao:
             """, task_id, start, end, current
         )
 
+        session.commit()
+
         return task_id
 
 

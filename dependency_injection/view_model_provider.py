@@ -17,5 +17,4 @@ view_models = {
     'ListViewModelFake': ListViewModel(use_cases['ListViewModelUseCasesFake']),
     TaskViewModel: TaskViewModel(use_cases[TaskViewModelUseCases]),
     'TaskViewModelFake': TaskViewModel(use_cases['TaskViewModelUseCasesFake'])
-
 }
