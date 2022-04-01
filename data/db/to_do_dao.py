@@ -94,6 +94,22 @@ class ToDoDao:
         )
 
     @staticmethod
+    def get_all_tasks_from_list(user_id: int, list_id: int) -> list:
+        data = db.execute(
+            """
+            SELECT * FROM task
+            LEFT JOIN task_progress
+            ON task.id = task_id
+            JOIN to_do_list
+            ON to_do_list.id = list_id
+            WHERE user_id = %s
+            AND list_id = %s
+            """, user_id, list_id
+        )
+
+
+
+    @staticmethod
     def insert_task(
             user_id: int,
             list_id: int,
@@ -140,4 +156,11 @@ class ToDoDao:
 
         return task_id
 
-
+    @staticmethod
+    def delete_task(user_id: int, task_id: int):
+        db.execute(
+            """
+            DELETE FROM CURRENT_TIMESTAMP task
+            WHERE id = %s
+            """, task_id
+        )

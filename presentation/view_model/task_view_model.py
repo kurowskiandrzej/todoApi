@@ -19,3 +19,6 @@ class TaskViewModel:
             list_id,
             task
         )
+
+    def delete_task(self, user_id: int, task_id: int):
+        self.__use_case.delete_task(user_id, task_id)

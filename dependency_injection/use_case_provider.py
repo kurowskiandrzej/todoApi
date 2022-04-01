@@ -17,6 +17,7 @@ from domain.use_case.update_list_name_use_case import UpdateListNameUseCase
 from domain.use_case.delete_list_use_case import DeleteListUseCase
 from domain.use_case.use_case_wrapper.task_view_model_use_cases import TaskViewModelUseCases
 from domain.use_case.insert_task_use_case import InsertTaskUseCase
+from domain.use_case.delete_task_use_case import DeleteTaskUseCase
 
 use_cases = {
     LoginViewModelUseCases: LoginViewModelUseCases(
@@ -54,9 +55,11 @@ use_cases = {
         ValidateListNameUseCase()
     ),
     TaskViewModelUseCases: TaskViewModelUseCases(
-        InsertTaskUseCase(repositories[ToDoRepository])
+        InsertTaskUseCase(repositories[ToDoRepository]),
+        DeleteTaskUseCase(repositories[ToDoRepository])
     ),
     'TaskViewModelUseCasesFake': TaskViewModelUseCases(
-        InsertTaskUseCase(repositories[ToDoRepositoryFake])
+        InsertTaskUseCase(repositories[ToDoRepositoryFake]),
+        DeleteTaskUseCase(repositories[ToDoRepositoryFake])
     )
 }

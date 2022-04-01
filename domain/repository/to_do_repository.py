@@ -46,3 +46,11 @@ class ToDoRepository(abc.ABC):
             current: int
     ) -> int:
         pass
+
+    @abc.abstractmethod
+    def delete_task(
+            self,
+            user_id: int,
+            task_id: int
+    ):
+        pass

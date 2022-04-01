@@ -45,7 +45,14 @@ def update_task(list_id, task_id):
 
 @task_view.delete('/todo/<int:list_id>/<int:task_id>')
 def delete_task(list_id, task_id):
-    pass
+    view_model = get_view_model(flask.current_app)
+
+    view_model.delete_task()
+
+    response = make_response()
+    response.status_code = 200
+
+    return response
 
 
 

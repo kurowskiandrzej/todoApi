@@ -82,3 +82,10 @@ class ToDoRepositoryFake(ToDoRepository):
             current: int
     ) -> int:
         pass
+
+    def delete_task(
+            self,
+            user_id: int,
+            task_id: int
+    ):
+        pass

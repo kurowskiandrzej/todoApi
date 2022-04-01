@@ -12,7 +12,12 @@ class ToDoRepositoryImpl(ToDoRepository):
     def post_list(self, user_id: int, name: str) -> int:
         return ToDoDao.insert_to_do_list(user_id, name)
 
-    def update_to_do_list(self, user_id: int, list_id: int, updated_name: str):
+    def update_to_do_list(
+            self,
+            user_id: int,
+            list_id: int,
+            updated_name: str
+    ):
         ToDoDao.update_to_do_list(user_id, list_id, updated_name)
 
     def get_all_lists(self, user_id: int) -> list:
@@ -50,3 +55,10 @@ class ToDoRepositoryImpl(ToDoRepository):
             end,
             current
         )
+
+    def delete_task(
+            self,
+            user_id: int,
+            task_id: int
+    ):
+        ToDoDao.delete_task(user_id, task_id)
