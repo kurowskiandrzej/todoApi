@@ -40,8 +40,6 @@ def register():
         response.data = get_string_resource(locale, 'user_already_exists')
         return response
 
-    print(response_data)
-
     response = make_response()
     response.status_code = response_data['status_code']
     if 'string_resource_id' in response_data:

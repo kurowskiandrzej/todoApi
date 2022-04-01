@@ -107,8 +107,6 @@ class ToDoDao:
             """, user_id, list_id
         )
 
-
-
     @staticmethod
     def insert_task(
             user_id: int,
@@ -149,7 +147,7 @@ class ToDoDao:
 
         db .execute(
             """
-            INSERT INTO task_progress (task_id, starting_value, end_value, current_progress)
+            INSERT INTO task_progress (task_id, start_value, end_value, current_progress)
             VALUES (%s, %s, %s, %s)
             """, task_id, start, end, current
         )

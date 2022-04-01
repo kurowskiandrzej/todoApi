@@ -15,7 +15,12 @@ class ToDoRepository(abc.ABC):
         pass
 
     @abc.abstractmethod
-    def update_to_do_list(self, user_id: int, list_id: int, updated_name: str):
+    def update_to_do_list(
+            self,
+            user_id: int,
+            list_id: int,
+            updated_name: str
+    ):
         pass
 
     @abc.abstractmethod
@@ -48,9 +53,5 @@ class ToDoRepository(abc.ABC):
         pass
 
     @abc.abstractmethod
-    def delete_task(
-            self,
-            user_id: int,
-            task_id: int
-    ):
+    def delete_task(self, user_id: int, task_id: int):
         pass
