@@ -160,7 +160,7 @@ class ToDoDao:
     def delete_task(user_id: int, task_id: int):
         db.execute(
             """
-            DELETE FROM CURRENT_TIMESTAMP task
+            DELETE FROM task
             WHERE id = %s
             """, task_id
         )
