@@ -47,7 +47,7 @@ def update_task(list_id, task_id):
 def delete_task(list_id, task_id):
     view_model = get_view_model(flask.current_app)
 
-    view_model.delete_task()
+    view_model.delete_task(1, task_id)
 
     response = make_response()
     response.status_code = 200
