@@ -111,18 +111,21 @@ def update_task(list_id, task_id):
         response.status_code = 403
         response.data = get_string_resource(locale, 'incorrect_value')
 
-    start = updates.get('start')
-    end = updates.get('end')
-    current = updates.get('current')
+    progress: dict | None = None
+
+    if 'start' in updates and 'end' in updates and 'current' in updates:
+        progress['start'] = updates.get('start')
+        progress['end'] = updates.get('end')
+        progress['current'] = updates.get('current')
 
     is_completed = None
-    if None not in (start, end, current):
-        if view_model.validate_task_progress(start, end, current) is False:
+    if None not in (progress['start'], progress['end'], progress['current']):
+        if view_model.validate_task_progress(progress['start'], progress['end'], progress['current']) is False:
             response = make_response()
             response.status_code = 403
             response.data = get_string_resource(locale, 'incorrect_value')
         else:
-            if current == end:
+            if progress['current'] == progress['end']:
                 is_completed = True
             else:
                 is_completed = updates.get('is_completed')
@@ -132,9 +135,7 @@ def update_task(list_id, task_id):
         list_id,
         task_id,
         task_value,
-        start,
-        end,
-        current,
+        progress,
         is_completed
     )
 

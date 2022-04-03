@@ -64,9 +64,7 @@ class TaskViewModel:
             list_id: int,
             task_id: int,
             value: str | None,
-            start: int | None,
-            end: int | None,
-            current: int | None,
+            progress: dict | None,
             is_completed: bool | None
     ):
         self.__use_case.update_task(
@@ -74,9 +72,7 @@ class TaskViewModel:
             list_id,
             task_id,
             value,
-            start,
-            end,
-            current,
+            progress,
             is_completed
         )
 

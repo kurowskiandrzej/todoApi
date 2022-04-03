@@ -11,9 +11,7 @@ class UpdateTaskUseCase:
             list_id: int,
             task_id: int,
             value: str,
-            start: int,
-            end: int,
-            current: int,
+            progress: dict | None,
             is_completed: bool
     ):
         self.__repository.update_task(
@@ -21,8 +19,6 @@ class UpdateTaskUseCase:
             list_id,
             task_id,
             value,
-            start,
-            end,
-            current,
+            progress,
             is_completed
         )

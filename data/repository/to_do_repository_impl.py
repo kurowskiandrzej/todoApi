@@ -87,9 +87,7 @@ class ToDoRepositoryImpl(ToDoRepository):
             list_id: int,
             task_id: int,
             value: str,
-            start: int,
-            end: int,
-            current: int,
+            progress: dict | None,
             is_completed: bool
     ):
         if value is not None:
@@ -100,14 +98,14 @@ class ToDoRepositoryImpl(ToDoRepository):
                 value
             )
 
-        if None not in (start, end, current):
+        if progress is not None:
             ToDoDao.update_task_progress(
                 user_id,
                 list_id,
                 task_id,
-                start,
-                end,
-                current
+                progress['start'],
+                progress['end'],
+                progress['current']
             )
 
         if is_completed is not None:
