@@ -115,7 +115,7 @@ def update_task(list_id, task_id):
 
     progress: dict[str, int | None] | None = None
 
-    if updates.get('start') is not None:
+    if 'start' in updates and 'end' in updates and 'current' in updates:
         progress = {
             'start': updates['start'],
             'end': updates['end'],
