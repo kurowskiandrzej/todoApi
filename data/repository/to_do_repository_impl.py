@@ -56,13 +56,19 @@ class ToDoRepositoryImpl(ToDoRepository):
             end: int | None,
             current: int | None
     ) -> int:
+        is_completed = False
+
+        if None not in (start, end, current) and start == end:
+            is_completed = True
+
         return ToDoDao.insert_task(
             user_id,
             list_id,
             task_value,
             start,
             end,
-            current
+            current,
+            is_completed
         )
 
     def get_all_tasks_from_list(

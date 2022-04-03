@@ -63,11 +63,11 @@ class TaskViewModel:
             user_id: int,
             list_id: int,
             task_id: int,
-            value: str,
-            start: int,
-            end: int,
-            current: int,
-            is_completed: bool
+            value: str | None,
+            start: int | None,
+            end: int | None,
+            current: int | None,
+            is_completed: bool | None
     ):
         self.__use_case.update_task(
             user_id,

@@ -115,12 +115,17 @@ def update_task(list_id, task_id):
     end = updates.get('end')
     current = updates.get('current')
 
-    if None not in (start, end, current) and view_model.validate_task_progress(start, end, current) is False:
-        response = make_response()
-        response.status_code = 403
-        response.data = get_string_resource(locale, 'incorrect_value')
-
-    is_completed = updates.get('is_completed')
+    is_completed = None
+    if None not in (start, end, current):
+        if view_model.validate_task_progress(start, end, current) is False:
+            response = make_response()
+            response.status_code = 403
+            response.data = get_string_resource(locale, 'incorrect_value')
+        else:
+            if current == end:
+                is_completed = True
+            else:
+                is_completed = updates.get('is_completed')
 
     view_model.update_task(
         user_id,
