@@ -123,7 +123,10 @@ def update_task(list_id, task_id):
         }
 
     if progress is not None:
-        if view_model.validate_task_progress(progress['start'], progress['end'], progress['current']) is False:
+        if progress['start'] is not None \
+                and progress['end'] is not None \
+                and progress['current'] is not None \
+                and view_model.validate_task_progress(progress['start'], progress['end'], progress['current']) is False:
             response = make_response()
             response.status_code = 403
             response.data = get_string_resource(locale, 'incorrect_value')
