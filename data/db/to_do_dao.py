@@ -220,7 +220,7 @@ class ToDoDao:
             UPDATE task_progress
             SET start_value = %s, end_value = %s, current_progress = %s
             FROM task T
-            JOIN task
+            LEFT JOIN task
             ON task.id = task_id
             JOIN to_do_list
             ON to_do_list.id = list_id
