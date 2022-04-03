@@ -128,10 +128,11 @@ def update_task(list_id, task_id):
             response = make_response()
             response.status_code = 403
             response.data = get_string_resource(locale, 'incorrect_value')
+
+            return response
         else:
             if progress['current'] == progress['end']:
                 is_completed = True
-                return make_response(jsonify(progress)), 200
             else:
                 is_completed = updates.get('is_completed')
 
