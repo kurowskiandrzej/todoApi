@@ -44,8 +44,6 @@ def post_task(list_id):
 
         return response
 
-    task = {'value': task_value}
-
     start = request.args.get('start')
     end = request.args.get('end')
     current = request.args.get('current')
@@ -61,12 +59,15 @@ def post_task(list_id):
             response.data = get_string_resource(locale, 'incorrect_value')
 
             return response
-        else:
-            task['start'] = int(start)
-            task['end'] = int(end)
-            task['current'] = int(current)
 
-    task_id = view_model.insert_task(user_id, list_id, task)
+    task_id = view_model.insert_task(
+        user_id,
+        list_id,
+        task_value,
+        start,
+        end,
+        current
+    )
 
     return jsonify({'task_id': task_id}), 200
 

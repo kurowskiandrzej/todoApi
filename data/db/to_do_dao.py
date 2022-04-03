@@ -111,47 +111,21 @@ class ToDoDao:
     def insert_task(
             user_id: int,
             list_id: int,
-            task_value: str
-    ) -> int | None:
-        if ToDoDao.to_do_list_exists(user_id, list_id) is False:
-            return None
-
-        task_id, = db.execute(
-            """
-            INSERT INTO task (list_id, value, created_on)
-            VALUES (%s, %s, CURRENT_TIMESTAMP)
-            RETURNING id
-            """, list_id, task_value
-        ).fetchone()
-
-        return task_id
-
-    @staticmethod
-    def insert_task_with_progress(
-            user_id: int,
-            list_id: int,
             task_value: str,
-            start: int,
-            end: int,
-            current: int
+            start: int | None,
+            end: int | None,
+            current: int | None
     ) -> int | None:
         if ToDoDao.to_do_list_exists(user_id, list_id) is False:
             return None
 
         task_id, = db.execute(
             """
-            INSERT INTO task (list_id, value, created_on)
-            VALUES (%s, %s, CURRENT_TIMESTAMP)
+            INSERT INTO task (list_id, value, created_on, progress_start, progress_end, progress_current)
+            VALUES (%s, %s, CURRENT_TIMESTAMP, %s, %s)
             RETURNING id
-            """, list_id, task_value
+            """, list_id, task_value, start, end, current
         ).fetchone()
-
-        db .execute(
-            """
-            INSERT INTO task_progress (task_id, start_value, end_value, current_progress)
-            VALUES (%s, %s, %s, %s)
-            """, task_id, start, end, current
-        )
 
         return task_id
 
@@ -159,10 +133,8 @@ class ToDoDao:
     def get_all_tasks_from_list(user_id: int, list_id: int) -> list:
         data = db.execute(
             """
-            SELECT task.id, value, is_completed, completed_on, start_value, end_value, current_progress 
+            SELECT task.id, value, is_completed, completed_on, progress_start, progress_end, progress_current 
             FROM task
-            LEFT JOIN task_progress
-            ON id = task_id
             JOIN to_do_list
             ON to_do_list.id = list_id
             WHERE user_id = %s
@@ -217,11 +189,9 @@ class ToDoDao:
     ):
         db.execute(
             """
-            UPDATE task_progress
-            SET start_value = %s, end_value = %s, current_progress = %s
-            FROM task_progress T
-            JOIN task
-            ON task.id = task_id
+            UPDATE task
+            SET progress_start = %s, progress_end = %s, progress_current = %s
+            FROM task T
             JOIN to_do_list
             ON to_do_list.id = list_id
             WHERE user_id = %s

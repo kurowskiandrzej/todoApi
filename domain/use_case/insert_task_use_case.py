@@ -9,21 +9,17 @@ class InsertTaskUseCase:
             self,
             user_id: int,
             list_id: int,
-            task: dict
+            value: str,
+            start: int | None,
+            end: int | None,
+            current: int | None
 
     ) -> int:
-        if 'start' in task:
-            return self.__repository.insert_task_with_progress(
-                user_id,
-                list_id,
-                task['value'],
-                task['start'],
-                task['end'],
-                task['current']
-            )
-        else:
-            return self.__repository.insert_task(
-                user_id,
-                list_id,
-                task['value']
-            )
+        return self.__repository.insert_task(
+            user_id,
+            list_id,
+            value,
+            start,
+            end,
+            current
+        )

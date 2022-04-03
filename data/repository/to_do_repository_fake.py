@@ -68,18 +68,10 @@ class ToDoRepositoryFake(ToDoRepository):
             self,
             user_id: int,
             list_id: int,
-            task_value: str
-    ) -> int:
-        pass
-
-    def insert_task_with_progress(
-            self,
-            user_id: int,
-            list_id: int,
             task_value: str,
-            start: int,
-            end: int,
-            current: int
+            start: int | None,
+            end: int | None,
+            current: int | None
     ) -> int:
         pass
 

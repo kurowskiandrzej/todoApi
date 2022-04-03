@@ -34,12 +34,18 @@ class TaskViewModel:
             self,
             user_id: int,
             list_id: int,
-            task: dict
+            value: str,
+            start: int | None,
+            end: int | None,
+            current: int | None
     ) -> int:
         return self.__use_case.insert_task(
             user_id,
             list_id,
-            task
+            value,
+            start,
+            end,
+            current
         )
 
     def get_all_tasks_from_list(
