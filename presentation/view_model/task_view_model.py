@@ -35,6 +35,9 @@ class TaskViewModel:
             task
         )
 
+    def get_all_tasks_from_list(self, user_id: int, list_id: int):
+        return self.__use_case.get_all_tasks_from_list(user_id, list_id)
+
     def delete_task(
             self,
             user_id: int,

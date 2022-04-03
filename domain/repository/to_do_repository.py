@@ -53,6 +53,10 @@ class ToDoRepository(abc.ABC):
         pass
 
     @abc.abstractmethod
+    def get_all_tasks_from_list(self, user_id: int, list_id: int) -> list:
+        pass
+
+    @abc.abstractmethod
     def delete_task(
             self,
             user_id: int,

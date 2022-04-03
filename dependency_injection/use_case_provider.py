@@ -20,6 +20,7 @@ from domain.use_case.insert_task_use_case import InsertTaskUseCase
 from domain.use_case.delete_task_use_case import DeleteTaskUseCase
 from domain.use_case.validate_task_value_use_case import ValidateTaskValueUseCase
 from domain.use_case.validate_task_progress_use_case import ValidateTaskProgressUseCase
+from domain.use_case.get_all_tasks_from_list_use_case import GetAllTasksFromListUseCase
 
 use_cases = {
     LoginViewModelUseCases: LoginViewModelUseCases(
@@ -61,13 +62,15 @@ use_cases = {
         ValidateTaskValueUseCase(),
         InsertTaskUseCase(repositories[ToDoRepository]),
         DeleteTaskUseCase(repositories[ToDoRepository]),
-        ValidateTaskProgressUseCase()
+        ValidateTaskProgressUseCase(),
+        GetAllTasksFromListUseCase(repositories[ToDoRepository])
     ),
     'TaskViewModelUseCasesFake': TaskViewModelUseCases(
         DecodeJwtUseCase(),
         ValidateTaskValueUseCase(),
         InsertTaskUseCase(repositories[ToDoRepositoryFake]),
         DeleteTaskUseCase(repositories[ToDoRepositoryFake]),
-        ValidateTaskProgressUseCase()
+        ValidateTaskProgressUseCase(),
+        GetAllTasksFromListUseCase(repositories[ToDoRepositoryFake])
     )
 }

@@ -94,22 +94,6 @@ class ToDoDao:
         )
 
     @staticmethod
-    def get_all_tasks_from_list(user_id: int, list_id: int) -> list:
-        data = db.execute(
-            """
-            SELECT * FROM task
-            LEFT JOIN task_progress
-            ON task.id = task_id
-            JOIN to_do_list
-            ON to_do_list.id = list_id
-            WHERE user_id = %s
-            AND list_id = %s
-            """, user_id, list_id
-        )
-
-        result = []
-
-    @staticmethod
     def to_do_list_exists(user_id: int, list_id: int) -> bool:
         list_exists, = db.execute(
             """
@@ -170,6 +154,37 @@ class ToDoDao:
         )
 
         return task_id
+
+    @staticmethod
+    def get_all_tasks_from_list(user_id: int, list_id: int) -> list:
+        data = db.execute(
+            """
+            SELECT task.id, value, is_completed, completed_on, start_value, end_value, current_progress 
+            FROM task
+            LEFT JOIN task_progress
+            ON id = task_id
+            JOIN to_do_list
+            ON to_do_list.id = list_id
+            WHERE user_id = %s
+            AND to_do_list.id = %s
+            """, user_id, list_id
+        )
+
+        tasks = []
+        for row in data:
+            task_id, value, is_completed, completed_on, start, end, current = row
+            tasks.append({
+                'id': task_id,
+                'list_id': list_id,
+                'value': value,
+                'is_completed': is_completed,
+                'completed_on': completed_on,
+                'start': start,
+                'end': end,
+                'current': current
+            })
+
+        return tasks
 
     @staticmethod
     def delete_task(user_id: int, list_id: int, task_id: int):

@@ -73,7 +73,19 @@ def post_task(list_id):
 
 @task_view.get('/todo/<int:list_id>')
 def get_tasks_by_list_id(list_id):
-    return f'you selected {list_id}'
+    view_model = get_view_model(flask.current_app)
+
+    token = request.cookies.get('token')
+
+    try:
+        token_data = view_model.decode_token(jwt_secret_key, token)
+    except (jwt.ExpiredSignatureError, jwt.exceptions.DecodeError):
+        return JWTHelper.create_invalid_jwt_response()
+
+    user_id = token_data['uid']
+    tasks = view_model.get_all_tasks_from_list(user_id, list_id)
+
+    return jsonify({'tasks': tasks}), 200
 
 
 @task_view.patch('/todo/<int:list_id>/<int:task_id>')

@@ -56,6 +56,9 @@ class ToDoRepositoryImpl(ToDoRepository):
             current
         )
 
+    def get_all_tasks_from_list(self, user_id: int, list_id: int) -> list:
+        return ToDoDao.get_all_tasks_from_list(user_id, list_id)
+
     def delete_task(
             self,
             user_id: int,
