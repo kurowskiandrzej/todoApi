@@ -196,9 +196,9 @@ class ToDoDao:
         db.execute(
             """
             UPDATE task
+            SET value = %s
             JOIN to_do_list
             ON to_do_list.id = list_id
-            SET value = %s
             WHERE user_id = %s
             AND to_do_list.id = %s
             AND task.id = %s
@@ -217,11 +217,11 @@ class ToDoDao:
         db.execute(
             """
             UPDATE task_progress
+            SET start_value = %s, end_value = %s, current_progress = %s
             JOIN task
             ON task.id = task_id
             JOIN to_do_list
             ON to_do_list.id = list_id
-            SET start_value = %s, end_value = %s, current_progress = %s
             WHERE user_id = %s
             AND to_do_list.id = %s
             AND task.id = %s
