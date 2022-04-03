@@ -1,5 +1,5 @@
 from get_all_lists_use_case import GetAllListsUseCase
-from dependency_injection.di import resolve
+from dependency_injection.container import resolve
 from data.repository.to_do_repository_fake import ToDoRepositoryFake
 
 

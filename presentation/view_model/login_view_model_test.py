@@ -1,5 +1,5 @@
 from presentation.view_model.login_view_model import LoginViewModel
-from dependency_injection.di import resolve
+from dependency_injection.container import resolve
 
 
 def get_fake_view_model() -> LoginViewModel:

@@ -1,6 +1,6 @@
 from domain.use_case.login_user_use_case import LoginUserUseCase
 from data.repository.to_do_repository_fake import ToDoRepositoryFake
-from dependency_injection.di import resolve
+from dependency_injection.container import resolve
 
 login_user = LoginUserUseCase(resolve(ToDoRepositoryFake))
 

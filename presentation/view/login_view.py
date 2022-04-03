@@ -3,7 +3,7 @@ import os
 import flask
 from flask import Flask, Blueprint, request, make_response
 
-from dependency_injection.di import resolve
+from dependency_injection.container import resolve
 from localization.locales import get_string_resource
 from presentation.view_model.login_view_model import LoginViewModel
 

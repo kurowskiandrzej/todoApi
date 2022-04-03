@@ -5,7 +5,7 @@ import jwt
 from flask import Flask, Blueprint, request, jsonify, make_response
 from sqlalchemy import exc
 
-from dependency_injection.di import resolve
+from dependency_injection.container import resolve
 from presentation.view_model.list_view_model import ListViewModel
 from domain.helper.jwt_helper import JWTHelper
 from localization.locales import get_string_resource

@@ -57,12 +57,14 @@ use_cases = {
         ValidateListNameUseCase()
     ),
     TaskViewModelUseCases: TaskViewModelUseCases(
+        DecodeJwtUseCase(),
         ValidateTaskValueUseCase(),
         InsertTaskUseCase(repositories[ToDoRepository]),
         DeleteTaskUseCase(repositories[ToDoRepository]),
         ValidateTaskProgressUseCase()
     ),
     'TaskViewModelUseCasesFake': TaskViewModelUseCases(
+        DecodeJwtUseCase(),
         ValidateTaskValueUseCase(),
         InsertTaskUseCase(repositories[ToDoRepositoryFake]),
         DeleteTaskUseCase(repositories[ToDoRepositoryFake]),

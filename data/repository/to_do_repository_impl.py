@@ -59,6 +59,7 @@ class ToDoRepositoryImpl(ToDoRepository):
     def delete_task(
             self,
             user_id: int,
+            list_id: int,
             task_id: int
     ):
-        ToDoDao.delete_task(user_id, task_id)
+        ToDoDao.delete_task(user_id, list_id, task_id)

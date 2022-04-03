@@ -107,23 +107,10 @@ class ToDoDao:
             """, user_id, list_id
         )
 
-    @staticmethod
-    def insert_task(
-            user_id: int,
-            list_id: int,
-            task_value: str
-    ) -> int:
-        pass
+        result = []
 
     @staticmethod
-    def insert_task_with_progress(
-            user_id: int,
-            list_id: int,
-            task_value: str,
-            start: int,
-            end: int,
-            current: int
-    ) -> int | None:
+    def to_do_list_exists(user_id: int, list_id: int) -> bool:
         list_exists, = db.execute(
             """
             SELECT EXISTS (
@@ -134,7 +121,37 @@ class ToDoDao:
             """, user_id, list_id
         ).fetchone()
 
-        if list_exists is False:
+        return list_exists
+
+    @staticmethod
+    def insert_task(
+            user_id: int,
+            list_id: int,
+            task_value: str
+    ) -> int | None:
+        if ToDoDao.to_do_list_exists(user_id, list_id) is False:
+            return None
+
+        task_id, = db.execute(
+            """
+            INSERT INTO task (list_id, value, created_on)
+            VALUES (%s, %s, CURRENT_TIMESTAMP)
+            RETURNING id
+            """, list_id, task_value
+        ).fetchone()
+
+        return task_id
+
+    @staticmethod
+    def insert_task_with_progress(
+            user_id: int,
+            list_id: int,
+            task_value: str,
+            start: int,
+            end: int,
+            current: int
+    ) -> int | None:
+        if ToDoDao.to_do_list_exists(user_id, list_id) is False:
             return None
 
         task_id, = db.execute(
@@ -155,10 +172,14 @@ class ToDoDao:
         return task_id
 
     @staticmethod
-    def delete_task(user_id: int, task_id: int):
+    def delete_task(user_id: int, list_id: int, task_id: int):
         db.execute(
             """
             DELETE FROM task
-            WHERE id = %s
-            """, task_id
+            JOIN to_do_list
+            ON list_id = to_do_list.id
+            WHERE user_id = %s
+            AND to_do_list.id = %s
+            AND task.id = %s
+            """, user_id, list_id, task_id
         )

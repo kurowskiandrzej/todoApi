@@ -2,7 +2,7 @@ import pytest
 from sqlalchemy import exc
 
 from data.repository.to_do_repository_fake import ToDoRepositoryFake
-from dependency_injection.di import resolve
+from dependency_injection.container import resolve
 from domain.use_case.register_user_use_case import RegisterUserUseCase
 
 register_user = RegisterUserUseCase(resolve(ToDoRepositoryFake))
