@@ -103,6 +103,8 @@ def update_task(list_id, task_id):
     user_id = token_data['uid']
     updates = request.get_json()
 
+    print(updates)
+
     locale = request.headers.get('Accept-Language')
 
     task_value = updates.get('value')
@@ -122,7 +124,7 @@ def update_task(list_id, task_id):
             'current': updates['current']
         }
 
-    is_completed = updates.get('is_completed')
+    is_completed: bool | None = updates.get('is_completed')
 
     if progress is not None:
         if progress['start'] is not None \
