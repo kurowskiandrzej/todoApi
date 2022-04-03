@@ -106,10 +106,12 @@ def update_task(list_id, task_id):
     locale = request.headers.get('Accept-Language')
 
     task_value = updates.get('value')
-    if task_value is not None and view_model.validate_task_value(task_value) is False:
-        response = make_response()
-        response.status_code = 403
-        response.data = get_string_resource(locale, 'incorrect_value')
+    if task_value is not None:
+        task_value = task_value.strip()
+        if view_model.validate_task_value(task_value) is False:
+            response = make_response()
+            response.status_code = 403
+            response.data = get_string_resource(locale, 'incorrect_value')
 
     progress: dict | None = None
 
