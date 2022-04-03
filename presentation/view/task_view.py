@@ -133,7 +133,7 @@ def update_task(list_id, task_id):
 
             return response
         else:
-            if progress['current'] == progress['end']:
+            if progress['current'] is not None and progress['current'] == progress['end']:
                 is_completed = True
             else:
                 is_completed = updates.get('is_completed')
