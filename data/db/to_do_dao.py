@@ -128,6 +128,11 @@ class ToDoDao:
             """, list_id, task_value, is_completed, start, end, current
         ).fetchone()
 
+        if is_completed:
+            ToDoDao.set_task_as_completed(user_id, list_id, task_id)
+        else:
+            ToDoDao.set_task_as_not_completed(user_id, list_id, task_id)
+
         return task_id
 
     @staticmethod
@@ -200,6 +205,11 @@ class ToDoDao:
             AND task.id = %s
             """, start, end, current, user_id, list_id, task_id
         )
+
+        if current == end:
+            ToDoDao.set_task_as_completed(user_id, list_id, task_id)
+        else:
+            ToDoDao.set_task_as_not_completed(user_id, list_id, task_id)
 
     @staticmethod
     def set_task_as_completed(
