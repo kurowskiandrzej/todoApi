@@ -117,13 +117,13 @@ def update_task(list_id, task_id):
 
     if 'start' in updates and 'end' in updates and 'current' in updates:
         progress = {
-            'start': updates.get('start'),
-            'end': updates.get('end'),
-            'current': updates.get('current')
+            'start': updates['start'],
+            'end': updates['end'],
+            'current': updates['current']
         }
 
     is_completed = None
-    if None not in (progress['start'], progress['end'], progress['current']):
+    if progress is not None:
         if view_model.validate_task_progress(progress['start'], progress['end'], progress['current']) is False:
             response = make_response()
             response.status_code = 403
