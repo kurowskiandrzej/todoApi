@@ -131,6 +131,7 @@ def update_task(list_id, task_id):
         else:
             if progress['current'] == progress['end']:
                 is_completed = True
+                return make_response(jsonify(progress)), 200
             else:
                 is_completed = updates.get('is_completed')
 
