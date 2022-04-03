@@ -46,9 +46,9 @@ def post_task(list_id):
 
     task = {'value': task_value}
 
-    start = request.args.get('value')
-    end = request.args.get('value')
-    current = request.args.get('value')
+    start = request.args.get('start')
+    end = request.args.get('end')
+    current = request.args.get('current')
 
     if None not in (start, end, current):
         if view_model.validate_task_progress(
