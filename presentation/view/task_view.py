@@ -115,14 +115,13 @@ def update_task(list_id, task_id):
 
     progress: dict[str, int | None] | None = None
 
-    if 'start' in updates and 'end' in updates and 'current' in updates:
+    if updates.get('start') is not None:
         progress = {
             'start': updates['start'],
             'end': updates['end'],
             'current': updates['current']
         }
 
-    is_completed = None
     if progress is not None:
         if view_model.validate_task_progress(progress['start'], progress['end'], progress['current']) is False:
             response = make_response()
@@ -131,10 +130,12 @@ def update_task(list_id, task_id):
 
             return response
         else:
-            if progress['current'] is not None and progress['current'] == progress['end']:
+            if progress['current'] == progress['end']:
                 is_completed = True
             else:
                 is_completed = updates.get('is_completed')
+    else:
+        is_completed = updates.get('is_completed')
 
     view_model.update_task(
         user_id,
