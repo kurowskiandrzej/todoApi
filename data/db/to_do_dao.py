@@ -227,8 +227,8 @@ class ToDoDao:
             WHERE user_id = %s
             AND to_do_list.id = %s
             AND task.id = %s
-            """
-        ), user_id, list_id, task_id
+            """, user_id, list_id, task_id
+        )
 
     @staticmethod
     def set_task_as_not_completed(
@@ -246,8 +246,8 @@ class ToDoDao:
             WHERE user_id = %s
             AND to_do_list.id = %s
             AND task.id = %s
-            """
-        ), user_id, list_id, task_id
+            """, user_id, list_id, task_id
+        )
 
     @staticmethod
     def delete_task(user_id: int, list_id: int, task_id: int):
