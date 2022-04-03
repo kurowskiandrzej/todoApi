@@ -59,6 +59,8 @@ def post_task(list_id):
             response = make_response()
             response.status_code = 403
             response.data = get_string_resource(locale, 'incorrect_value')
+
+            return response
         else:
             task['start'] = int(start)
             task['end'] = int(end)
