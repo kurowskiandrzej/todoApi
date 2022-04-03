@@ -113,7 +113,7 @@ def update_task(list_id, task_id):
             response.status_code = 403
             response.data = get_string_resource(locale, 'incorrect_value')
 
-    progress: dict | None = None
+    progress: dict[str, int | None] | None = None
 
     if 'start' in updates and 'end' in updates and 'current' in updates:
         progress = {
@@ -123,7 +123,7 @@ def update_task(list_id, task_id):
         }
 
     is_completed = None
-    if progress is not None:
+    if progress is not None and None not in progress.values():
         if view_model.validate_task_progress(progress['start'], progress['end'], progress['current']) is False:
             response = make_response()
             response.status_code = 403
