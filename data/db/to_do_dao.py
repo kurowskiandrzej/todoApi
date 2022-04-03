@@ -187,6 +187,84 @@ class ToDoDao:
         return tasks
 
     @staticmethod
+    def update_task_value(
+            user_id: int,
+            list_id: int,
+            task_id: int,
+            value: str
+    ):
+        db.execute(
+            """
+            UPDATE task
+            JOIN to_do_list
+            ON to_do_list.id = list_id
+            SET value = %s
+            WHERE user_id = %s
+            AND to_do_list.id = %s
+            AND task.id = %s
+            """, value, user_id, list_id, task_id
+        )
+
+    @staticmethod
+    def update_task_progress(
+            user_id: int,
+            list_id: int,
+            task_id: int,
+            start: int,
+            end: int,
+            current: int
+    ):
+        db.execute(
+            """
+            UPDATE task_progress
+            JOIN task
+            ON task.id = task_id
+            JOIN to_do_list
+            ON to_do_list.id = list_id
+            SET start_value = %s, end_value = %s, current_progress = %s
+            WHERE user_id = %s
+            AND to_do_list.id = %s
+            AND task.id = %s
+            """, start, end, current, user_id, list_id, task_id
+        )
+
+    @staticmethod
+    def set_task_as_completed(
+            user_id: int,
+            list_id: int,
+            task_id: int,
+    ):
+        db.execute(
+            """
+            UPDATE task
+            JOIN to_do_list
+            ON to_do_list.id = list_id
+            SET is_completed = TRUE, completed_on = CURRENT_TIMESTAMP
+            WHERE user_id = %s
+            AND to_do_list.id = %s
+            AND task.id = %s
+            """
+        ), user_id, list_id, task_id
+
+    @staticmethod
+    def set_task_as_not_completed(
+            user_id: int,
+            list_id: int,
+            task_id: int,
+    ):
+        db.execute(
+            """
+            UPDATE task
+            JOIN to_do_list
+            ON to_do_list.id = list_id
+            SET is_completed = FALSE, completed_on = NULL
+            WHERE user_id = %s
+            AND to_do_list.id = %s
+            AND task.id = %s
+            """
+        ), user_id, list_id, task_id
+
+    @staticmethod
     def delete_task(user_id: int, list_id: int, task_id: int):
         db.execute(
             """

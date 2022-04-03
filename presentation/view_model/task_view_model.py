@@ -5,8 +5,15 @@ class TaskViewModel:
     def __init__(self, use_case: TaskViewModelUseCases):
         self.__use_case = use_case
 
-    def decode_token(self, secret: str, token: str) -> dict:
-        return self.__use_case.decode_jwt(secret, token)
+    def decode_token(
+            self,
+            secret: str,
+            token: str
+    ) -> dict:
+        return self.__use_case.decode_jwt(
+            secret,
+            token
+        )
 
     def validate_task_value(self, value: str) -> bool:
         return self.__use_case.validate_task_value(value)
@@ -35,8 +42,37 @@ class TaskViewModel:
             task
         )
 
-    def get_all_tasks_from_list(self, user_id: int, list_id: int):
-        return self.__use_case.get_all_tasks_from_list(user_id, list_id)
+    def get_all_tasks_from_list(
+            self,
+            user_id: int,
+            list_id: int
+    ):
+        return self.__use_case.get_all_tasks_from_list(
+            user_id,
+            list_id
+        )
+
+    def update_task(
+            self,
+            user_id: int,
+            list_id: int,
+            task_id: int,
+            value: str,
+            start: int,
+            end: int,
+            current: int,
+            is_completed: bool
+    ):
+        self.__use_case.update_task(
+            user_id,
+            list_id,
+            task_id,
+            value,
+            start,
+            end,
+            current,
+            is_completed
+        )
 
     def delete_task(
             self,
@@ -44,4 +80,8 @@ class TaskViewModel:
             list_id: int,
             task_id: int
     ):
-        self.__use_case.delete_task(user_id, list_id, task_id)
+        self.__use_case.delete_task(
+            user_id,
+            list_id,
+            task_id
+        )

@@ -6,11 +6,25 @@ class ToDoRepositoryImpl(ToDoRepository):
     def login(self, email: str) -> dict | None:
         return ToDoDao.login(email)
 
-    def register(self, email: str, password_hash: str) -> int:
-        return ToDoDao.register(email, password_hash)
+    def register(
+            self,
+            email: str,
+            password_hash: str
+    ) -> int:
+        return ToDoDao.register(
+            email,
+            password_hash
+        )
 
-    def post_list(self, user_id: int, name: str) -> int:
-        return ToDoDao.insert_to_do_list(user_id, name)
+    def post_list(
+            self,
+            user_id: int,
+            name: str
+    ) -> int:
+        return ToDoDao.insert_to_do_list(
+            user_id,
+            name
+        )
 
     def update_to_do_list(
             self,
@@ -23,8 +37,15 @@ class ToDoRepositoryImpl(ToDoRepository):
     def get_all_lists(self, user_id: int) -> list:
         return ToDoDao.get_all_to_do_lists(user_id)
 
-    def delete_to_do_list(self, user_id: int, list_id: int):
-        ToDoDao.delete_to_do_list(user_id, list_id)
+    def delete_to_do_list(
+            self,
+            user_id: int,
+            list_id: int
+    ):
+        ToDoDao.delete_to_do_list(
+            user_id,
+            list_id
+        )
 
     def insert_task(
             self,
@@ -56,8 +77,58 @@ class ToDoRepositoryImpl(ToDoRepository):
             current
         )
 
-    def get_all_tasks_from_list(self, user_id: int, list_id: int) -> list:
-        return ToDoDao.get_all_tasks_from_list(user_id, list_id)
+    def get_all_tasks_from_list(
+            self,
+            user_id: int,
+            list_id: int
+    ) -> list:
+        return ToDoDao.get_all_tasks_from_list(
+            user_id,
+            list_id
+        )
+
+    def update_task(
+            self,
+            user_id: int,
+            list_id: int,
+            task_id: int,
+            value: str,
+            start: int,
+            end: int,
+            current: int,
+            is_completed: bool
+    ):
+        if value is not None:
+            ToDoDao.update_task_value(
+                user_id,
+                list_id,
+                task_id,
+                value
+            )
+
+        if start is not None and end is not None and current is not None:
+            ToDoDao.update_task_progress(
+                user_id,
+                list_id,
+                task_id,
+                start,
+                end,
+                current
+            )
+
+        if is_completed is not None:
+            if is_completed:
+                ToDoDao.set_task_as_completed(
+                    user_id,
+                    list_id,
+                    task_id
+                )
+            else:
+                ToDoDao.set_task_as_not_completed(
+                    user_id,
+                    list_id,
+                    task_id
+                )
 
     def delete_task(
             self,
@@ -65,4 +136,8 @@ class ToDoRepositoryImpl(ToDoRepository):
             list_id: int,
             task_id: int
     ):
-        ToDoDao.delete_task(user_id, list_id, task_id)
+        ToDoDao.delete_task(
+            user_id,
+            list_id,
+            task_id
+        )

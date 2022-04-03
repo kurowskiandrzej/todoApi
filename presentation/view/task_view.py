@@ -90,7 +90,52 @@ def get_tasks_by_list_id(list_id):
 
 @task_view.patch('/todo/<int:list_id>/<int:task_id>')
 def update_task(list_id, task_id):
-    pass
+    view_model = get_view_model(flask.current_app)
+
+    token = request.cookies.get('token')
+
+    try:
+        token_data = view_model.decode_token(jwt_secret_key, token)
+    except (jwt.ExpiredSignatureError, jwt.exceptions.DecodeError):
+        return JWTHelper.create_invalid_jwt_response()
+
+    user_id = token_data['uid']
+    updates = request.get_json()
+
+    locale = request.headers.get('Accept-Language')
+
+    task_value = updates.get('value')
+    if view_model.validate_task_value(task_value) is False:
+        response = make_response()
+        response.status_code = 403
+        response.data = get_string_resource(locale, 'incorrect_value')
+
+    start = updates.get('start')
+    end = updates.get('end')
+    current = updates.get('current')
+
+    if start is not None and end is not None and current is not None:
+        if view_model.validate_task_progress(start, end, current) is False:
+            response = make_response()
+            response.status_code = 403
+            response.data = get_string_resource(locale, 'incorrect_value')
+
+    is_completed = updates.get('is_completed')
+
+    view_model.update_task(
+        user_id,
+        list_id,
+        task_id,
+        task_value,
+        start,
+        end,
+        current,
+        is_completed
+    )
+
+    response = make_response()
+    response.status_code = 200
+    return response
 
 
 @task_view.delete('/todo/<int:list_id>/<int:task_id>')
@@ -112,8 +157,3 @@ def delete_task(list_id, task_id):
     response.status_code = 200
 
     return response
-
-
-
-
-
