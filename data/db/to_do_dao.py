@@ -123,7 +123,7 @@ class ToDoDao:
         task_id, = db.execute(
             """
             INSERT INTO task (list_id, value, is_completed, created_on, progress_start, progress_end, progress_current)
-            VALUES (%s, %s, %s, CURRENT_TIMESTAMP, %s, %s)
+            VALUES (%s, %s, %s, CURRENT_TIMESTAMP, %s, %s, %s)
             RETURNING id
             """, list_id, task_value, is_completed, start, end, current
         ).fetchone()
