@@ -116,9 +116,11 @@ def update_task(list_id, task_id):
     progress: dict | None = None
 
     if 'start' in updates and 'end' in updates and 'current' in updates:
-        progress['start'] = updates.get('start')
-        progress['end'] = updates.get('end')
-        progress['current'] = updates.get('current')
+        progress = {
+            'start': updates.get('start'),
+            'end': updates.get('end'),
+            'current': updates.get('current')
+        }
 
     is_completed = None
     if None not in (progress['start'], progress['end'], progress['current']):
