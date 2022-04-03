@@ -88,7 +88,7 @@ class ToDoRepositoryImpl(ToDoRepository):
             task_id: int,
             value: str,
             progress: dict | None,
-            is_completed: bool
+            is_completed: bool | None
     ):
         if value is not None:
             ToDoDao.update_task_value(

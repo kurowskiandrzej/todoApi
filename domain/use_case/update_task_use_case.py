@@ -12,7 +12,7 @@ class UpdateTaskUseCase:
             task_id: int,
             value: str,
             progress: dict | None,
-            is_completed: bool
+            is_completed: bool | None
     ):
         self.__repository.update_task(
             user_id,

@@ -122,6 +122,7 @@ def update_task(list_id, task_id):
             'current': updates['current']
         }
 
+    is_completed = updates.get('is_completed')
     if progress is not None:
         if progress['start'] is not None \
                 and progress['end'] is not None \
@@ -138,8 +139,7 @@ def update_task(list_id, task_id):
                 is_completed = True
             else:
                 is_completed = updates.get('is_completed')
-    else:
-        is_completed = updates.get('is_completed')
+
 
     view_model.update_task(
         user_id,

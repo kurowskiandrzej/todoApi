@@ -59,7 +59,7 @@ class ToDoRepository(abc.ABC):
             task_id: int,
             value: str,
             progress: dict | None,
-            is_completed: bool
+            is_completed: bool | None
     ):
         pass
 
