@@ -248,11 +248,15 @@ class ToDoDao:
     def delete_task(user_id: int, list_id: int, task_id: int):
         db.execute(
             """
-            DELETE T FROM task T
-            JOIN to_do_list L
-            ON T.list_id = L.id
-            WHERE L.user_id = %s
-            AND L.id = %s
-            AND T.id = %s
-            """, user_id, list_id, task_id
+            DELETE FROM task
+            WHERE task.id = %s
+            AND task.list_id = %s
+            AND EXISTS(
+                SELECT 1
+                FROM to_do_list
+                JOIN task
+                ON task.list_id = to_do_list.id
+                WHERE user_id = %s
+            )
+            """, task_id, list_id, user_id
         )
