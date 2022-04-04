@@ -1,6 +1,6 @@
 from domain.use_case.decode_jwt_use_case import DecodeJwtUseCase
 from domain.use_case.get_all_lists_use_case import GetAllListsUseCase
-from domain.use_case.post_list_use_case import PostListUseCase
+from domain.use_case.insert_list_use_case import InsertListUseCase
 from domain.use_case.validate_list_name_use_case import ValidateListNameUseCase
 from domain.use_case.update_list_name_use_case import UpdateListNameUseCase
 from domain.use_case.delete_list_use_case import DeleteListUseCase
@@ -11,7 +11,7 @@ class ListViewModelUseCases:
             self,
             decode_jwt: DecodeJwtUseCase,
             get_all_lists: GetAllListsUseCase,
-            post_list: PostListUseCase,
+            post_list: InsertListUseCase,
             delete_list: DeleteListUseCase,
             update_list_name: UpdateListNameUseCase,
             validate_list_name: ValidateListNameUseCase

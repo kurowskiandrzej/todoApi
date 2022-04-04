@@ -1,7 +1,7 @@
 from domain.repository.to_do_repository import ToDoRepository
 
 
-class PostListUseCase:
+class InsertListUseCase:
     def __init__(self, repository: ToDoRepository):
         self.__repository = repository
 

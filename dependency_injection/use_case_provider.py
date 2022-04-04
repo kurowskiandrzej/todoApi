@@ -11,7 +11,7 @@ from domain.use_case.validate_password_use_case import ValidatePasswordUseCase
 from domain.use_case.use_case_wrapper.list_view_model_use_cases import ListViewModelUseCases
 from domain.use_case.decode_jwt_use_case import DecodeJwtUseCase
 from domain.use_case.get_all_lists_use_case import GetAllListsUseCase
-from domain.use_case.post_list_use_case import PostListUseCase
+from domain.use_case.insert_list_use_case import InsertListUseCase
 from domain.use_case.validate_list_name_use_case import ValidateListNameUseCase
 from domain.use_case.update_list_name_use_case import UpdateListNameUseCase
 from domain.use_case.delete_list_use_case import DeleteListUseCase
@@ -45,7 +45,7 @@ use_cases = {
     ListViewModelUseCases: ListViewModelUseCases(
         DecodeJwtUseCase(),
         GetAllListsUseCase(repositories[ToDoRepository]),
-        PostListUseCase(repositories[ToDoRepository]),
+        InsertListUseCase(repositories[ToDoRepository]),
         DeleteListUseCase(repositories[ToDoRepository]),
         UpdateListNameUseCase(repositories[ToDoRepository]),
         ValidateListNameUseCase()
@@ -53,7 +53,7 @@ use_cases = {
     'ListViewModelUseCasesFake': ListViewModelUseCases(
         DecodeJwtUseCase(),
         GetAllListsUseCase(repositories[ToDoRepositoryFake]),
-        PostListUseCase(repositories[ToDoRepositoryFake]),
+        InsertListUseCase(repositories[ToDoRepositoryFake]),
         DeleteListUseCase(repositories[ToDoRepositoryFake]),
         UpdateListNameUseCase(repositories[ToDoRepositoryFake]),
         ValidateListNameUseCase()
