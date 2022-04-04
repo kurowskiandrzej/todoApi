@@ -206,11 +206,6 @@ class ToDoDao:
             """, start, end, current, user_id, list_id, task_id
         )
 
-        if current == end:
-            ToDoDao.set_task_as_completed(user_id, list_id, task_id)
-        else:
-            ToDoDao.set_task_as_not_completed(user_id, list_id, task_id)
-
     @staticmethod
     def set_task_as_completed(
             user_id: int,
