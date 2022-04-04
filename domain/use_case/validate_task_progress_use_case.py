@@ -1,15 +1,18 @@
 class ValidateTaskProgressUseCase:
+    """Difference between start and end must be at least 1.
+    Current cannot be outside start...end range.
+    """
     def __call__(
             self,
-            start_value: int,
-            end_value: int,
-            current_progress: int
+            start: int,
+            end: int,
+            current: int
     ) -> bool:
-        if start_value == end_value:
+        if start == end:
             return False
-        elif start_value <= current_progress <= end_value:
+        elif start <= current <= end:
             return True
-        elif start_value >= current_progress >= end_value:
+        elif start >= current >= end:
             return True
         else:
             return False
