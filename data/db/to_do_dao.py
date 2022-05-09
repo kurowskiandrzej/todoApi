@@ -42,7 +42,7 @@ class ToDoDao:
             """
             INSERT INTO to_do_list (user_id, name, created_on) 
             VALUES (%s, %s, CURRENT_TIMESTAMP) 
-            RETURNING id
+            RETURNING id, created_on
             """, user_id, name
         ).fetchone()
 
