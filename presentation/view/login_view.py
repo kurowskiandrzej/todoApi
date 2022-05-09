@@ -51,16 +51,3 @@ def login():
         )
 
     return response
-
-
-@login_view.get('login_test')
-def login_test():
-    view_model = get_view_model(flask.current_app)
-
-    token = view_model.get_jwt(
-        jwt_secret_key,
-        4
-    )
-    print(token)
-    return jsonify({'token': token})
-
