@@ -15,6 +15,7 @@ cors_config = {
     'Access-Control-Allow-Credentials': 'true'
 }
 
+
 CORS(app, supports_credentials=True, resources={r"/api/*": {
     "origins": "*",
     "methods": ["GET", "POST"],
