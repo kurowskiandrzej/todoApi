@@ -57,9 +57,10 @@ class ToDoDao:
             SELECT to_do_list.id, to_do_list.name, to_do_list.created_on, 
                 (SELECT COUNT(task.id) FROM task WHERE is_completed = TRUE), 
                 (SELECT COUNT(task.id) FROM task)
-            from to_do_list
-            JOIN task
+            FROM to_do_list
+            LEFT JOIN task
             ON task.list_id = to_do_list.id
+            WHERE to_do_list.user_id = %s
             GROUP BY to_do_list.id
             """, [user_id]
         ).fetchall()
