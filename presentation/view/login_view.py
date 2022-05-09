@@ -58,6 +58,7 @@ def login():
 
 
 @login_view.get('login_test')
+@cross_origin(supports_credentials=True)
 def login_test():
     view_model = get_view_model(flask.current_app)
 
