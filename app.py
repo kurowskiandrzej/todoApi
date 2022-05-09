@@ -11,7 +11,15 @@ from presentation.view.task_view import task_view
 
 app = Flask(__name__)
 
-CORS(app, supports_credentials=True)
+CORS(
+    app,
+    supports_credentials=True,
+    resources={
+        r"/api/*": {
+            "origins": "http://localhost:3000"
+        }
+    }
+)
 
 app.register_blueprint(login_view)
 app.register_blueprint(register_view)
