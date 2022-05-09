@@ -15,7 +15,7 @@ cors_config = {
     'Access-Control-Allow-Credentials': 'true'
 }
 
-CORS(app, supports_credentials=True)
+CORS(app, supports_credentials=True, resources={r"/api/*": {"origins": "*"}})
 
 app.register_blueprint(login_view)
 app.register_blueprint(register_view)
