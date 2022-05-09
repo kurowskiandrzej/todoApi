@@ -48,7 +48,7 @@ def login():
             value=token,
             secure=True,
             httponly=True,
-            samesite=None
+            samesite='None'
         )
 
     return response
