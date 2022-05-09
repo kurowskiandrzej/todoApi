@@ -1,7 +1,6 @@
 import os
 
 from flask import Flask
-from flask_cors import CORS
 
 # Blueprints
 from presentation.view.login_view import login_view
@@ -10,8 +9,6 @@ from presentation.view.list_view import list_view
 from presentation.view.task_view import task_view
 
 app = Flask(__name__)
-cors = CORS(app, resources={r"/api/*": {"origins": "*"}})
-app.config['Access-Control-Allow-Headers'] = 'Content-Type'
 
 app.register_blueprint(login_view)
 app.register_blueprint(register_view)

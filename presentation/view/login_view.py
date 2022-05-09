@@ -2,7 +2,6 @@ import os
 
 import flask
 from flask import Flask, Blueprint, request, make_response
-from flask_cors import cross_origin
 
 from dependency_injection.container import resolve
 from localization.locales import get_string_resource
@@ -21,7 +20,6 @@ def get_view_model(app: Flask) -> LoginViewModel:
 
 
 @login_view.post('/login')
-@cross_origin()
 def login():
     view_model = get_view_model(flask.current_app)
 
