@@ -2,6 +2,7 @@ import os
 
 import flask
 from flask import Blueprint, request, Flask, make_response
+from flask_cors import cross_origin
 from sqlalchemy import exc
 
 from dependency_injection.container import resolve
@@ -21,6 +22,7 @@ def get_view_model(app: Flask) -> RegisterViewModel:
 
 
 @register_view.post('/register')
+@cross_origin()
 def register():
     view_model = get_view_model(flask.current_app)
 

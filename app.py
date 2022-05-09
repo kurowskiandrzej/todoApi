@@ -10,7 +10,8 @@ from presentation.view.list_view import list_view
 from presentation.view.task_view import task_view
 
 app = Flask(__name__)
-CORS(app)
+cors = CORS(app)
+app.config['CORS_HEADERS'] = 'Content-Type'
 
 app.register_blueprint(login_view)
 app.register_blueprint(register_view)
