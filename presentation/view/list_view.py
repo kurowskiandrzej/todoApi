@@ -33,7 +33,6 @@ def post_list():
         return JWTHelper.create_invalid_jwt_response()
 
     user_data = request.get_json()
-    print("user data --------------------------------------------:::", user_data)
     list_name = user_data['list_name'].strip()
     locale = request.headers.get('Accept-Language')
     user_id = token_data['uid']
