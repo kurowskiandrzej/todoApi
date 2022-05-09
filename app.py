@@ -12,7 +12,7 @@ from presentation.view.task_view import task_view
 app = Flask(__name__)
 
 cors_config = {
-    'Access-Control-Allow-Credentials': True
+    'Access-Control-Allow-Credentials': 'true'
 }
 
 CORS(app, resources={
