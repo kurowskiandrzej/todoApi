@@ -12,7 +12,7 @@ from presentation.view.task_view import task_view
 app = Flask(__name__)
 
 CORS(app, supports_credentials=True, resources={r"/api/*": {
-    "origins": ["http://localhost:3000/"],
+    "origins": ["http://localhost:3000/login"],
     "methods": ["GET", "POST"],
     "allow-headers": ["Authorization", "Content-Type", "multipart/form-data"],
 }})
