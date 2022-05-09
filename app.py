@@ -11,7 +11,7 @@ from presentation.view.task_view import task_view
 
 app = Flask(__name__)
 cors = CORS(app, resources={r"/api/*": {"origins": "*"}})
-app.config['Access-Control-Allow-Headers'] = 'Content-Type'
+app.config['Access-Control-Allow-Headers'] = '*'
 
 app.register_blueprint(login_view)
 app.register_blueprint(register_view)
