@@ -10,7 +10,14 @@ from presentation.view.list_view import list_view
 from presentation.view.task_view import task_view
 
 app = Flask(__name__)
-CORS(app)
+
+cors_config = {
+    'Access-Control-Allow-Credentials': True
+}
+
+CORS(app, resources={
+    r"/api/*": cors_config
+})
 
 app.register_blueprint(login_view)
 app.register_blueprint(register_view)
