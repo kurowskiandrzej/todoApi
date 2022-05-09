@@ -54,20 +54,25 @@ class ToDoDao:
     def get_all_to_do_lists(user_id: int) -> list:
         data = db.execute(
             """
-            SELECT id, name, created_on 
-            FROM to_do_list
-            WHERE user_id = %s
+            SELECT to_do_list.id, to_do_list.name, to_do_list.created_on, 
+                (SELECT COUNT(task.id) FROM task WHERE is_completed = TRUE), 
+                (SELECT COUNT(task.id) FROM task)
+            from to_do_list
+            JOIN task
+            ON task.list_id = to_do_list.id
             """, [user_id]
         ).fetchall()
 
         result = []
 
         for row in data:
-            list_id, name, created_on = row
+            list_id, name, created_on, finished_tasks, all_tasks = row
             result.append({
                 'id': list_id,
                 'name': name,
-                'created': created_on
+                'created': created_on,
+                'finished_tasks': finished_tasks,
+                'all_tasks': all_tasks
             })
 
         return result
