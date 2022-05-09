@@ -11,15 +11,11 @@ from presentation.view.task_view import task_view
 
 app = Flask(__name__)
 
-cors_config = {
-    'Access-Control-Allow-Credentials': 'true'
-}
-
-
 CORS(app, supports_credentials=True, resources={r"/api/*": {
-    "origins": "*",
+    "Access-Control-Allow-Origin": "http://localhost:3000/",
     "methods": ["GET", "POST"],
-    "allow-headers": ["Authorization", "Content-Type", "multipart/form-data"]
+    "Access-Control-Allow-Headers": ["Authorization", "Content-Type", "multipart/form-data"],
+    "Access-Control-Allow-Credentials": "true"
 }})
 
 app.register_blueprint(login_view)
