@@ -20,7 +20,7 @@ CORS(
         r"/api/*": {
             "origins": ["http://localhost:3000"],
             "methods": ["POST", "GET", "PUT", "PATCH", "DELETE", "OPTIONS"],
-            "headers": ["Content-Type"]
+            "headers": ["Content-Type", "Accept"]
         }
     }
 )
