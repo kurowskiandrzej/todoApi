@@ -13,10 +13,8 @@ app = Flask(__name__)
 
 CORS(app, supports_credentials=True, resources={r"/api/*": {
     "origins": ["http://localhost:3000/"],
-    "Access-Control-Allow-Origin": ["http://localhost:3000/"],
     "methods": ["GET", "POST"],
-    "Access-Control-Allow-Headers": ["Authorization", "Content-Type", "multipart/form-data"],
-    "Access-Control-Allow-Credentials": "true"
+    "allow-headers": ["Authorization", "Content-Type", "multipart/form-data"],
 }})
 
 app.register_blueprint(login_view)
