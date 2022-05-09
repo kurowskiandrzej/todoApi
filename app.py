@@ -14,10 +14,12 @@ app = Flask(__name__)
 CORS(
     app,
     supports_credentials=True,
+    automatic_options=True,
     resources={
         r"/api/*": {
             "origins": ["http://localhost:3000"],
-            "methods": ["POST", "GET", "PUT", "PATCH", "DELETE", "OPTIONS"]
+            "methods": ["POST", "GET", "PUT", "PATCH", "DELETE", "OPTIONS"],
+            "headers": ["Content-Type", "application/json", "text/plain"]
         }
     }
 )
