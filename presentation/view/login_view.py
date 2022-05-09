@@ -1,7 +1,7 @@
 import os
 
 import flask
-from flask import Flask, Blueprint, request, make_response
+from flask import Flask, Blueprint, request, make_response, jsonify
 from flask_cors import cross_origin
 
 from dependency_injection.container import resolve
@@ -53,3 +53,11 @@ def login():
         )
 
     return response
+
+
+@login_view.get('login_test')
+def login_test():
+    token = request.cookies.get('token')
+    print(token)
+    return jsonify({'token': token})
+
