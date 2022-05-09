@@ -60,6 +60,7 @@ class ToDoDao:
             from to_do_list
             JOIN task
             ON task.list_id = to_do_list.id
+            GROUP BY to_do_list.id
             """, [user_id]
         ).fetchall()
 
