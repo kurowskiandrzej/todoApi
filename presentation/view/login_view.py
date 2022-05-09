@@ -21,7 +21,7 @@ def get_view_model(app: Flask) -> LoginViewModel:
 
 
 @login_view.post('/login')
-@cross_origin()
+@cross_origin(supports_credentials=True)
 def login():
     view_model = get_view_model(flask.current_app)
 
