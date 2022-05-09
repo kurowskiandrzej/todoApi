@@ -4,3 +4,4 @@ Werkzeug~=2.0.2
 SQLAlchemy~=1.4.25
 pg8000==1.21.3
 pyjwt==2.2.0
+flask-CORS==3.0.10
