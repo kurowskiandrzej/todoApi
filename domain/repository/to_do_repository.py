@@ -11,7 +11,7 @@ class ToDoRepository(abc.ABC):
         pass
 
     @abc.abstractmethod
-    def post_list(self, user_id: int, name: str) -> int:
+    def post_list(self, user_id: int, name: str) -> (int, str):
         pass
 
     @abc.abstractmethod

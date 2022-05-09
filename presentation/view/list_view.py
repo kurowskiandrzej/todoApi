@@ -43,14 +43,17 @@ def post_list():
         return response
 
     try:
-        list_id = view_model.post_list(user_id, list_name)
+        list_id, created_on = view_model.post_list(user_id, list_name)
     except exc.IntegrityError:
         response = make_response()
         response.status_code = 409
         response.data = get_string_resource(locale, 'list_with_name_already_exists')
         return response
 
-    return jsonify({'list_id': list_id}), 200
+    return jsonify({
+        'list_id': list_id,
+        'created_on': created_on
+    }), 200
 
 
 @list_view.get('/todo')

@@ -8,7 +8,7 @@ class ListViewModel:
     def decode_token(self, secret: str, token: str) -> dict:
         return self.__use_case.decode_jwt(secret, token)
 
-    def post_list(self, user_id: int, list_name: str):
+    def post_list(self, user_id: int, list_name: str) -> (int, str):
         return self.__use_case.post_list(user_id, list_name)
 
     def update_list(self, user_id: int, list_id: int, updated_name: str):

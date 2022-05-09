@@ -20,7 +20,7 @@ class ToDoRepositoryImpl(ToDoRepository):
             self,
             user_id: int,
             name: str
-    ) -> int:
+    ) -> (int, str):
         return ToDoDao.insert_to_do_list(
             user_id,
             name

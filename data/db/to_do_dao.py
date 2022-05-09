@@ -37,7 +37,7 @@ class ToDoDao:
         return user_id
 
     @staticmethod
-    def insert_to_do_list(user_id: int, name: str) -> int:
+    def insert_to_do_list(user_id: int, name: str) -> (int, str):
         result = db.execute(
             """
             INSERT INTO to_do_list (user_id, name, created_on) 
@@ -46,9 +46,9 @@ class ToDoDao:
             """, user_id, name
         ).fetchone()
 
-        list_id, = result
+        list_id, created_on = result
 
-        return list_id
+        return list_id, created_on
 
     @staticmethod
     def get_all_to_do_lists(user_id: int) -> list:

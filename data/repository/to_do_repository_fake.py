@@ -45,7 +45,7 @@ class ToDoRepositoryFake(ToDoRepository):
             raise exc.IntegrityError("user already exists", None, None)
         return len(self.__user_email_with_password)
 
-    def post_list(self, user_id: int, name: str) -> int:
+    def post_list(self, user_id: int, name: str) -> (int, str):
         self.__to_do_lists.append(
             {
                 'id': user_id,
