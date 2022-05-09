@@ -52,6 +52,8 @@ def login():
             httponly=True
         )
 
+        response.headers['Access-Control-Allow-Origin'] = "http://localhost:3000/login"
+
     return response
 
 
