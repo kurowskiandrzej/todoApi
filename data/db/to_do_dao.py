@@ -55,8 +55,8 @@ class ToDoDao:
         data = db.execute(
             """
             SELECT to_do_list.id, to_do_list.name, to_do_list.created_on, 
-                (SELECT COUNT(task.id) FROM task WHERE is_completed = TRUE), 
-                (SELECT COUNT(task.id) FROM task)
+                (SELECT COUNT(task.id) FROM task WHERE is_completed = TRUE AND task.list_id = to_do_list.id), 
+                (SELECT COUNT(task.id) FROM task WHERE task.list_id = to_do_list.id)
             FROM to_do_list
             LEFT JOIN task
             ON task.list_id = to_do_list.id
