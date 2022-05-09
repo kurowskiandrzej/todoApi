@@ -1,7 +1,7 @@
 import os
 
 import flask
-from flask import Flask, Blueprint, request, make_response, jsonify
+from flask import Flask, Blueprint, request, make_response
 
 from dependency_injection.container import resolve
 from localization.locales import get_string_resource
