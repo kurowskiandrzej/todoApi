@@ -32,7 +32,7 @@ def post_list():
     except (jwt.ExpiredSignatureError, jwt.exceptions.DecodeError):
         return JWTHelper.create_invalid_jwt_response()
 
-    list_name = (request.args.get('list_name')).strip()
+    list_name = (request.json.get('list_name')).strip()
     locale = request.headers.get('Accept-Language')
     user_id = token_data['uid']
 
