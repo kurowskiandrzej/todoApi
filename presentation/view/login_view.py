@@ -2,7 +2,6 @@ import os
 
 import flask
 from flask import Flask, Blueprint, request, make_response, jsonify
-from flask_cors import cross_origin
 
 from dependency_injection.container import resolve
 from localization.locales import get_string_resource
@@ -50,8 +49,6 @@ def login():
             secure=True,
             httponly=True
         )
-
-        response.headers['Access-Control-Allow-Origin'] = "http://localhost:3000/login"
 
     return response
 
