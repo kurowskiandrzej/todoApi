@@ -146,7 +146,7 @@ class ToDoDao:
     def get_all_tasks_from_list(user_id: int, list_id: int) -> list:
         data = db.execute(
             """
-            SELECT task.id, value, is_completed, created_on, completed_on, progress_start, progress_end, progress_current 
+            SELECT task.id, value, is_completed, task.created_on, completed_on, progress_start, progress_end, progress_current 
             FROM task
             JOIN to_do_list
             ON to_do_list.id = list_id
