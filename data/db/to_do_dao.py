@@ -146,7 +146,7 @@ class ToDoDao:
     def get_all_tasks_from_list(user_id: int, list_id: int) -> list:
         data = db.execute(
             """
-            SELECT task.id, value, is_completed, completed_on, progress_start, progress_end, progress_current 
+            SELECT task.id, value, is_completed, created_on, completed_on, progress_start, progress_end, progress_current 
             FROM task
             JOIN to_do_list
             ON to_do_list.id = list_id
@@ -157,12 +157,13 @@ class ToDoDao:
 
         tasks = []
         for row in data:
-            task_id, value, is_completed, completed_on, start, end, current = row
+            task_id, value, is_completed, created_on, completed_on, start, end, current = row
             tasks.append({
                 'id': task_id,
                 'list_id': list_id,
                 'value': value,
                 'is_completed': is_completed,
+                'created_on': created_on,
                 'completed_on': completed_on,
                 'start': start,
                 'end': end,
