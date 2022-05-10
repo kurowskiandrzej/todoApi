@@ -16,7 +16,7 @@ CORS(
     supports_credentials=True,
     resources={
         r"/api/*": {
-            "origins": "*"
+            "origins": "https://todoweb-35ibytdllq-ew.a.run.app"
         }
     }
 )
