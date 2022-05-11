@@ -62,6 +62,11 @@ def get_all_lists():
     view_model = get_view_model(flask.current_app)
     token = request.cookies.get('token')
 
+    # delete this
+    headers = request.headers
+    print("--------------------------headers:", headers)
+    # deletion end
+
     try:
         token_data = view_model.decode_token(jwt_secret_key, token)
     except (jwt.ExpiredSignatureError, jwt.exceptions.DecodeError):
