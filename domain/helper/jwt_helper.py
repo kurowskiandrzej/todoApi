@@ -9,7 +9,14 @@ class JWTHelper:
         that clears token from user's browser
         """
         response = make_response()
-        response.set_cookie('token', '', expires=0)
+        response.set_cookie(
+            key='token',
+            value='',
+            secure=True,
+            httponly=True,
+            samesite='None',
+            expires=0
+        )
         response.status_code = 401
 
         return response
