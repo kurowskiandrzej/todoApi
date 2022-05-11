@@ -32,10 +32,11 @@ def post_task(list_id):
     except (jwt.ExpiredSignatureError, jwt.exceptions.DecodeError):
         return JWTHelper.create_invalid_jwt_response()
 
+    user_data = request.get_json()
     user_id = token_data['uid']
     locale = request.headers.get('Accept-Language')
 
-    task_value = (request.args.get('value')).strip()
+    task_value = user_data['value'].strip()
 
     if view_model.validate_task_value(task_value) is False:
         response = make_response()
@@ -44,9 +45,9 @@ def post_task(list_id):
 
         return response
 
-    start = request.args.get('start')
-    end = request.args.get('end')
-    current = request.args.get('current')
+    start = user_data.get('start')
+    end = user_data.get('end')
+    current = user_data.get('current')
 
     if None not in (start, end, current):
         if view_model.validate_task_progress(
