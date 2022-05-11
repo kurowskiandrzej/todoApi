@@ -1,3 +1,5 @@
+WEB_CLIENT_URL = 'https://todoweb-35ibytdllq-ew.a.run.app'
+
 # Authentication
 PASSWORD_MINIMUM_LENGTH = 8
 PASSWORD_MAXIMUM_LENGTH = 100

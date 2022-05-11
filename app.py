@@ -2,6 +2,7 @@ import os
 
 from flask import Flask
 from flask_cors import CORS
+from common import constants
 
 # Blueprints
 from presentation.view.login_view import login_view
@@ -16,7 +17,7 @@ CORS(
     supports_credentials=True,
     resources={
         r"/api/*": {
-            "origins": "https://todoweb-35ibytdllq-ew.a.run.app"
+            "origins": constants.WEB_CLIENT_URL
         }
     }
 )

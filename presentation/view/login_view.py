@@ -2,6 +2,7 @@ import os
 
 import flask
 from flask import Flask, Blueprint, request, make_response
+from common import constants
 
 from dependency_injection.container import resolve
 from localization.locales import get_string_resource
@@ -57,7 +58,7 @@ def login():
 @login_view.post('/logout')
 def logout():
     response = make_response()
-    response.set_cookie('token', 'deleted', expires=0)
+    response.delete_cookie('token', path='/', domain=constants.WEB_CLIENT_URL)
     response.status_code = 200
 
     return response
