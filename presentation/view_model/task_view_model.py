@@ -38,7 +38,7 @@ class TaskViewModel:
             start: int | None,
             end: int | None,
             current: int | None
-    ) -> int:
+    ) -> (int, str):
         return self.__use_case.insert_task(
             user_id,
             list_id,

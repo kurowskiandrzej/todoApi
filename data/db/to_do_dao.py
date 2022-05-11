@@ -123,15 +123,15 @@ class ToDoDao:
             end: int | None,
             current: int | None,
             is_completed: bool
-    ) -> int | None:
+    ) -> (int, str):
         if ToDoDao.to_do_list_exists(user_id, list_id) is False:
             return None
 
-        task_id, = db.execute(
+        task_id, created_on = db.execute(
             """
             INSERT INTO task (list_id, value, is_completed, created_on, progress_start, progress_end, progress_current)
             VALUES (%s, %s, %s, CURRENT_TIMESTAMP, %s, %s, %s)
-            RETURNING id
+            RETURNING id, created_on
             """, list_id, task_value, is_completed, start, end, current
         ).fetchone()
 
@@ -140,7 +140,7 @@ class ToDoDao:
         else:
             ToDoDao.set_task_as_not_completed(user_id, list_id, task_id)
 
-        return task_id
+        return task_id, created_on
 
     @staticmethod
     def get_all_tasks_from_list(user_id: int, list_id: int) -> list:

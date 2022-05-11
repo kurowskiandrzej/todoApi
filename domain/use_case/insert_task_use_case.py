@@ -14,7 +14,7 @@ class InsertTaskUseCase:
             end: int | None,
             current: int | None
 
-    ) -> int:
+    ) -> (int, str):
         return self.__repository.insert_task(
             user_id,
             list_id,

@@ -61,7 +61,7 @@ def post_task(list_id):
 
             return response
 
-    task_id = view_model.insert_task(
+    task_id, created_on = view_model.insert_task(
         user_id,
         list_id,
         task_value,
@@ -70,7 +70,10 @@ def post_task(list_id):
         current
     )
 
-    return jsonify({'task_id': task_id}), 200
+    return jsonify({
+        'task_id': task_id,
+        'created_on': created_on
+    }), 200
 
 
 @task_view.get('/todo/<int:list_id>')
