@@ -57,7 +57,7 @@ def login():
 @login_view.post('/logout')
 def logout():
     response = make_response()
-    response.set_cookie('token', '', expires=0)
+    response.set_cookie('token', 'deleted', expires=0)
     response.status_code = 200
 
     return response
