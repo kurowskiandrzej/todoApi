@@ -17,7 +17,7 @@ CORS(
     supports_credentials=True,
     resources={
         r"/api/*": {
-            "origins": constants.WEB_CLIENT_URL
+            "origins": [constants.WEB_CLIENT_URL, "http://localhost:3000"]
         }
     }
 )
