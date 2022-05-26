@@ -24,7 +24,7 @@ def get_view_model(app: Flask) -> RegisterViewModel:
 def register():
     view_model = get_view_model(flask.current_app)
 
-    email = request.form['email']
+    email = request.form['email'].lower()
     password = request.form['password']
 
     locale = request.headers.get('Accept-Language')
