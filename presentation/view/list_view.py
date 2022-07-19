@@ -82,7 +82,9 @@ def patch_list(list_id):
     except (jwt.ExpiredSignatureError, jwt.exceptions.DecodeError):
         return JWTHelper.create_invalid_jwt_response()
 
-    updated_name = (request.args.get('updated_name')).strip()
+    updates = request.get_json()
+
+    updated_name = (updates.get('updated_name')).strip()
     locale = request.headers.get('Accept-Language')
     user_id = token_data['uid']
     response = make_response()
