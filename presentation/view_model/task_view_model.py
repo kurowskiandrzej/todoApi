@@ -93,4 +93,7 @@ class TaskViewModel:
             user_id,
             list_id
     ):
-        pass
+        self.__use_case.delete_completed_tasks_from_list(
+            user_id,
+            list_id
+        )
