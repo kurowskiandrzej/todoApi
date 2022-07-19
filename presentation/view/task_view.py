@@ -109,7 +109,7 @@ def update_task(list_id, task_id):
 
     locale = request.headers.get('Accept-Language')
 
-    task_value = updates.get('value')
+    task_value = (updates.get('value')).strip()
     if task_value is not None:
         task_value = task_value.strip()
         if view_model.validate_task_value(task_value) is False:
