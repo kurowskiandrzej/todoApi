@@ -133,3 +133,6 @@ class ToDoRepositoryImpl(ToDoRepository):
             list_id,
             task_id
         )
+
+    def delete_completed_tasks_from_list(self, user_id: int, list_id: int):
+        ToDoDao.delete_completed_tasks_from_list(user_id, list_id)

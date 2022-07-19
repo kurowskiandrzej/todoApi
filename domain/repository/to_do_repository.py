@@ -71,3 +71,11 @@ class ToDoRepository(abc.ABC):
             task_id: int
     ):
         pass
+
+    @abc.abstractmethod
+    def delete_completed_tasks_from_list(
+            self,
+            user_id: int,
+            list_id: int
+    ):
+        pass

@@ -87,3 +87,10 @@ class TaskViewModel:
             list_id,
             task_id
         )
+
+    def delete_completed_tasks_from_list(
+            self,
+            user_id,
+            list_id
+    ):
+        pass

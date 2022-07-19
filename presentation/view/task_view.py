@@ -175,3 +175,24 @@ def delete_task(list_id, task_id):
     response.status_code = 200
 
     return response
+
+
+@task_view.delete('/todo/<int:list_id>/completed')
+def delete_completed_tasks_from_list(list_id):
+    view_model = get_view_model(flask.current_app)
+
+    token = request.cookies.get('token')
+
+    try:
+        token_data = view_model.decode_token(jwt_secret_key, token)
+    except (jwt.ExpiredSignatureError, jwt.exceptions.DecodeError):
+        return JWTHelper.create_invalid_jwt_response()
+
+    user_id = token_data['uid']
+
+    view_model.delete_completed_tasks_from_list(user_id, list_id)
+
+    response = make_response()
+    response.status_code = 200
+
+    return response

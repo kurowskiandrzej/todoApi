@@ -268,3 +268,21 @@ class ToDoDao:
             )
             """, task_id, list_id, user_id
         )
+
+    @staticmethod
+    def delete_completed_tasks_from_list(user_id: int, list_id: int):
+        db.execute(
+            """
+            DELETE FROM task
+            WHERE task.is_completed = TRUE
+            AND task.list_id = %s
+            AND EXISTS(
+                SELECT 1
+                FROM to_do_list
+                JOIN task
+                ON task.list_id = to_do_list.id
+                WHERE user_id = %s
+            )
+            """, list_id, user_id
+        )
+

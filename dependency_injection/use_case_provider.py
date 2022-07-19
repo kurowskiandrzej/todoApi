@@ -1,6 +1,7 @@
 from data.repository.to_do_repository_fake import ToDoRepositoryFake
 from dependency_injection.repository_provider import repositories
 from domain.repository.to_do_repository import ToDoRepository
+from domain.use_case.delete_completed_tasks_from_list_use_case import DeleteCompletedTasksFromListUseCase
 from domain.use_case.encode_jwt_use_case import EncodeJwtUseCase
 from domain.use_case.login_user_use_case import LoginUserUseCase
 from domain.use_case.register_user_use_case import RegisterUserUseCase
@@ -65,7 +66,8 @@ use_cases = {
         DeleteTaskUseCase(repositories[ToDoRepository]),
         ValidateTaskProgressUseCase(),
         GetAllTasksFromListUseCase(repositories[ToDoRepository]),
-        UpdateTaskUseCase(repositories[ToDoRepository])
+        UpdateTaskUseCase(repositories[ToDoRepository]),
+        DeleteCompletedTasksFromListUseCase(repositories[ToDoRepository])
     ),
     'TaskViewModelUseCasesFake': TaskViewModelUseCases(
         DecodeJwtUseCase(),
@@ -74,6 +76,7 @@ use_cases = {
         DeleteTaskUseCase(repositories[ToDoRepositoryFake]),
         ValidateTaskProgressUseCase(),
         GetAllTasksFromListUseCase(repositories[ToDoRepositoryFake]),
-        UpdateTaskUseCase(repositories[ToDoRepositoryFake])
+        UpdateTaskUseCase(repositories[ToDoRepositoryFake]),
+        DeleteCompletedTasksFromListUseCase(repositories[ToDoRepositoryFake])
     )
 }

@@ -1,3 +1,4 @@
+from domain.use_case.delete_completed_tasks_from_list_use_case import DeleteCompletedTasksFromListUseCase
 from domain.use_case.insert_task_use_case import InsertTaskUseCase
 from domain.use_case.delete_task_use_case import DeleteTaskUseCase
 from domain.use_case.validate_task_value_use_case import ValidateTaskValueUseCase
@@ -16,7 +17,8 @@ class TaskViewModelUseCases:
             delete_task: DeleteTaskUseCase,
             validate_task_progress: ValidateTaskProgressUseCase,
             get_all_tasks_from_list: GetAllTasksFromListUseCase,
-            update_task: UpdateTaskUseCase
+            update_task: UpdateTaskUseCase,
+            delete_completed_tasks_from_list: DeleteCompletedTasksFromListUseCase
     ):
         self.decode_jwt = decode_jwt
         self.validate_task_value = validate_task_value
@@ -25,3 +27,4 @@ class TaskViewModelUseCases:
         self.validate_task_progress = validate_task_progress
         self.get_all_tasks_from_list = get_all_tasks_from_list
         self.update_task = update_task
+        self.delete_completed_tasks_from_list = delete_completed_tasks_from_list
